@@ -90,6 +90,33 @@ class SampleHandler extends UnicastRemoteObject implements Handler {
 
 ```
 
+Programming Model
+```
+class MainServlet {
+	
+	public void service(HttpServletRequest request,
+						HttpServletResponse response) {
+		try {
+			// 1. Create input map
+			
+			// 2. Extract user information from HttpSession
+
+			// 3. Call the handle() method from RMI
+			
+			Handler w = (Handler)Naming
+						.lookup("rmi://localhost:4700/sample");
+						
+			String result = w.handle("GET /", map, user);
+			
+		} catch (Exception e) {
+			
+		}
+	}
+}
+
+
+```
+
 
 java.rmi.Naming
 
