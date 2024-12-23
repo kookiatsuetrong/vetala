@@ -9,6 +9,6 @@ public class SampleHandler extends UnicastRemoteObject implements Handler {
 
 	@Override
 	public String find(String s) throws RemoteException {
-		return "Your message is " + s;
+		return "I've got " + s;
 	}
 }

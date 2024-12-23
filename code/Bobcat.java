@@ -42,6 +42,12 @@ public class Bobcat {
 		}
 
 		LogManager.getLogManager().reset();
+			
+		try {
+			LocateRegistry.createRegistry(4700);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 
 		try {
 			Tomcat tomcat = new Tomcat();
@@ -67,12 +73,7 @@ public class Bobcat {
 			// remove the temporary working directory
 		} catch (Exception e) { }
 		*/
-			
-		try {
-			LocateRegistry.createRegistry(4700);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		
 	}
 }
 
