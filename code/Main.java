@@ -2,16 +2,10 @@ import org.vetala.Server;
 import org.vetala.Context;
 import java.util.Map;
 import java.rmi.Naming;
-import java.rmi.registry.LocateRegistry;
 
 class Main {
 
 	void start() {
-		try {
-			LocateRegistry.createRegistry(4700);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
 		var server = Server.getInstance();		
 		server.handle("/find").by(Main::find);
 		

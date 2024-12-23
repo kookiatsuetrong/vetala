@@ -7,9 +7,13 @@
  *
  */
 import java.io.File;
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
+
+import java.rmi.registry.LocateRegistry;
+
 import org.apache.catalina.Server;
 import org.apache.catalina.Service;
 import org.apache.catalina.Context;
@@ -63,6 +67,12 @@ public class Bobcat {
 			// remove the temporary working directory
 		} catch (Exception e) { }
 		*/
+			
+		try {
+			LocateRegistry.createRegistry(4700);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }
 
