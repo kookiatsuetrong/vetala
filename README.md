@@ -63,7 +63,7 @@ class SampleHandler extends UnicastRemoteObject implements Handler {
 
 java.rmi.Naming
 
-```
+```java
 static void 	bind(String name, Remote obj)
 	Binds the specified name to a remote object.
 	
@@ -85,7 +85,7 @@ static void 	unbind(String name)
 
 java.rmi.registry.LocateRegistry
 
-```
+```java
 static Registry 	createRegistry(int port)
 	Creates and exports a Registry instance on 
 	the local host that accepts requests on 
