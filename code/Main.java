@@ -22,6 +22,5 @@ class Main {
 			return "RMI Error";
 		}
 	}
-
 }
 

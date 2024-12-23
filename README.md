@@ -24,6 +24,36 @@ Starting Vetala Engine
 bash build.sh
 ```
 
+From the Main Handler
+```java
+import org.vetala.Server;
+import org.vetala.Context;
+import java.util.Map;
+import java.rmi.Naming;
+
+class Main {
+
+	void start() {
+		var server = Server.getInstance();		
+		server.handle("/find").by(Main::find);
+		
+	}
+	
+	static Object find(Context context) {
+		try {
+			Handler w = (Handler)Naming
+						.lookup("rmi://localhost:4700/sample");
+			String result = w.find("Welcome to RMI");
+			return result;
+		} catch (Exception e) {
+			System.out.println(e);
+			return "RMI Error";
+		}
+	}
+	
+}
+```
+
 Writing Vetala Handler
 ```java
 import java.rmi.Naming;
@@ -63,7 +93,7 @@ class SampleHandler extends UnicastRemoteObject implements Handler {
 
 java.rmi.Naming
 
-```java
+```
 static void 	bind(String name, Remote obj)
 	Binds the specified name to a remote object.
 	
@@ -85,7 +115,7 @@ static void 	unbind(String name)
 
 java.rmi.registry.LocateRegistry
 
-```java
+```
 static Registry 	createRegistry(int port)
 	Creates and exports a Registry instance on 
 	the local host that accepts requests on 
