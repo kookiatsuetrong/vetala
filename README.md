@@ -1,5 +1,8 @@
 ## Vetala
 
+Vetala is a non-stop Java web service and web application.
+
+
 ```
 From HTTP Request:
 
@@ -13,7 +16,7 @@ GET  / ------------->   '
                               '
                               ' RMI
                               '
-                              '----> Vetala Handler
+                              '---> Vetala Handler
 ```
 
 Usage
