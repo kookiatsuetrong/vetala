@@ -19,9 +19,45 @@ GET  / ------------->   '
                               '---> Vetala Handler
 ```
 
-Usage
+Starting Vetala Engine
 ```
-java -classpath "runtime/*;vetala/*" Vetala
+bash build.sh
+```
+
+Writing Vetala Handler
+```java
+import java.rmi.Naming;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+class Start {
+	public static void main(String[] data) {
+		try {
+			SampleHandler s = new SampleHandler();
+			Naming.rebind("rmi://localhost:4700/sample", s);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}
+
+interface Handler extends Remote {
+	String find(String s) throws RemoteException;
+}
+
+class SampleHandler extends UnicastRemoteObject implements Handler {
+
+	public SampleHandler() throws RemoteException { 
+		super();
+	}
+
+	@Override
+	public String find(String s) throws RemoteException {
+		return "The message is " + s;
+	}
+}
+
 ```
 
 
