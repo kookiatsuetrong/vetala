@@ -90,10 +90,10 @@ class SampleHandler extends UnicastRemoteObject implements Handler {
 
 ```
 
-Programming Model
-```
-class MainServlet {
-	
+The new programming model
+```java
+class MainServlet extends HttpServlet {
+	@Override
 	public void service(HttpServletRequest request,
 						HttpServletResponse response) {
 		try {
