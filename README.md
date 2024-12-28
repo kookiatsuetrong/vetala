@@ -21,36 +21,19 @@ GET  / ------------->   '
 
 Starting Vetala Engine
 ```
-bash build.sh
+bash make.sh
 ```
 
-From the Main Handler
+From the definition of Handler interface
 ```java
-import org.vetala.Server;
-import org.vetala.Context;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.Map;
-import java.rmi.Naming;
+public interface Handler extends Remote {
 
-class Main {
+	String call(String pattern, Map<String,String[]> map) 
+		throws RemoteException;
 
-	void start() {
-		var server = Server.getInstance();		
-		server.handle("/find").by(Main::find);
-		
-	}
-	
-	static Object find(Context context) {
-		try {
-			Handler w = (Handler)Naming
-						.lookup("rmi://localhost:4700/sample");
-			String result = w.find("Welcome to RMI");
-			return result;
-		} catch (Exception e) {
-			System.out.println(e);
-			return "RMI Error";
-		}
-	}
-	
 }
 ```
 
@@ -60,62 +43,35 @@ import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Map;
 
 class Start {
-	public static void main(String[] data) {
-		try {
-			SampleHandler s = new SampleHandler();
-			Naming.rebind("rmi://localhost:4700/sample", s);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+	public static void main(String[] data) throws Exception {
+		SimpleHandler handler = new SimpleHandler();
+		Naming.rebind("rmi://localhost:4700/sample", handler);
 	}
 }
 
-interface Handler extends Remote {
-	String find(String s) throws RemoteException;
-}
+class SimpleHandler extends UnicastRemoteObject implements Handler {
 
-class SampleHandler extends UnicastRemoteObject implements Handler {
-
-	public SampleHandler() throws RemoteException { 
+	public SimpleHandler() throws RemoteException { 
 		super();
 	}
 
 	@Override
-	public String find(String s) throws RemoteException {
-		return "The message is " + s;
-	}
-}
-
-```
-
-The new programming model
-```java
-class MainServlet extends HttpServlet {
-	@Override
-	public void service(HttpServletRequest request,
-						HttpServletResponse response) {
-		try {
-			// 1. Create input map
-			
-			// 2. Extract user information from HttpSession
-
-			// 3. Call the handle() method from RMI
-			
-			Handler w = (Handler)Naming
-						.lookup("rmi://localhost:4700/sample");
-						
-			String result = w.handle("GET /", map, user);
-			
-		} catch (Exception e) {
-			
+	public String call(String path, Map<String,String[]> map) 
+		throws RemoteException {
+		String result = "Not Found";
+		switch (path) {
+			case "GET /"      -> result = "The Home";
+			case "GET /test"  -> result = "The Test Application";
 		}
+		return result;
 	}
 }
 
-
 ```
+
 
 
 java.rmi.Naming

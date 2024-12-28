@@ -5,13 +5,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
 class Start {
-	public static void main(String[] data) {
-		try {
-			SimpleHandler s = new SimpleHandler();
-			Naming.rebind("rmi://localhost:4700/sample", s);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+	public static void main(String[] data) throws Exception {
+		SimpleHandler handler = new SimpleHandler();
+		Naming.rebind("rmi://localhost:4700/sample", handler);
 	}
 }
 
@@ -20,16 +16,16 @@ class SimpleHandler extends UnicastRemoteObject implements Handler {
 	public SimpleHandler() throws RemoteException { 
 		super();
 	}
-	
-	@Override
-	public boolean isSupported(String s) throws RemoteException {
-		return true;
-	}
 
 	@Override
 	public String call(String path, Map<String,String[]> map) 
 		throws RemoteException {
-		return "The request is " + path;
+		String result = "Not Found";
+		switch (path) {
+			case "GET /"      -> result = "The Home";
+			case "GET /test"  -> result = "The Test Application";
+		}
+		return result;
 	}
 }
 
