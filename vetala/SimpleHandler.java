@@ -5,9 +5,19 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
 class Start {
+
+	public static final int rmiPort = 4700;
+	public static final String rmiRegistry = 
+				"rmi://127.0.0.1:" + rmiPort + "/handler";
+
 	public static void main(String[] data) throws Exception {
+		String[] list = Naming.list("rmi://127.0.0.1:4700");
+		for (String s : list) {
+			System.out.println(s);
+		}
+	
 		SimpleHandler handler = new SimpleHandler();
-		Naming.rebind("rmi://localhost:4700/sample", handler);
+		Naming.rebind(rmiRegistry, handler);
 	}
 }
 

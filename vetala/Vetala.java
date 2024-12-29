@@ -31,6 +31,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class Vetala {
 
+	public static final int rmiPort = 4700;
+	public static final String rmiRegistry = 
+				"rmi://127.0.0.1:" + rmiPort + "/handler";
+
 	public static void main(String[] data) {
 		var port = 12345;
 		var home = "web";
@@ -54,7 +58,7 @@ public class Vetala {
 		// LogManager.getLogManager().reset();
 			
 		try {
-			LocateRegistry.createRegistry(4700);
+			LocateRegistry.createRegistry(rmiPort);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -91,6 +95,13 @@ class MainServlet extends HttpServlet {
 			String pattern = verb + " " + uri;
 			System.out.println(pattern);
 			
+			String[] paths = uri.trim().split("/");
+			if (paths.length > 1 && 
+				"manager".equals(paths[1])) {
+				managerService(request, response);
+				return;
+			}
+			
 			Map<String,String[]> rawMap = request.getParameterMap();
 			Map<String,String[]> map = new TreeMap<>();
 			for (String key : rawMap.keySet()) {
@@ -101,9 +112,8 @@ class MainServlet extends HttpServlet {
 			
 			// 2. Extract user detail
 			
-			// 3. Check the handler
-			Handler remote = (Handler)Naming.lookup
-								("rmi://localhost:4700/sample");
+			// 3. Call the handler
+			Handler remote = (Handler)Naming.lookup(Vetala.rmiRegistry);
 			
 			String result = remote.call(pattern, map);
 			printMap(map);
@@ -127,6 +137,15 @@ class MainServlet extends HttpServlet {
 		System.out.println();	
 	}
 	
+	void managerService(HttpServletRequest request,
+						HttpServletResponse response) {
+		try {
+			var out = response.getWriter();
+			out.println("The Manager");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }
 
 /*
@@ -147,18 +166,27 @@ String                getScheme()
 
 HttpServletRequest
 
-String              getMethod()
-String              getRequestURI()
-StringBuffer        getRequestURL()
-Collection<Part>    getParts()
+String                getMethod()
+String                getRequestURI()
+StringBuffer          getRequestURL()
+Collection<Part>      getParts()
 
-HttpSession         getSession()
-HttpSession         getSession(boolean create)
+HttpSession           getSession()
+HttpSession           getSession(boolean create)
 
-Cookie[]            getCookies()
+Cookie[]              getCookies()
 
-Enumeration<String> getHeaderNames()
-Enumeration<String> getHeaders(String s)
+Enumeration<String>   getHeaderNames()
+Enumeration<String>   getHeaders(String s)
+
+
+ServletContext.getRequestDispatcher(String s)
+ServletContext.getNamedDispatcher(String name)
+ServletRequest.getRequestDispatcher(String s)
+
+
+/favicon.ico
+
 
 */
 
