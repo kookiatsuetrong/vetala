@@ -72,6 +72,35 @@ class SimpleHandler extends UnicastRemoteObject implements Handler {
 
 ```
 
+Common web application endpoints
+
+```
+ GET /user-check-email
+POST /user-check-email
+
+ GET /user-register
+POST /user-register
+
+ GET /user-profile
+ GET /user-logout
+
+ GET /user-login
+POST /user-login
+
+ GET /reset-password
+POST /reset-password
+
+ GET /reset-password-code
+POST /reset-password-code
+ GET /reset-password-final
+
+ GET /contact
+POST /contact
+ GET /contact-final
+
+ GET /error
+
+```
 
 
 java.rmi.Naming
