@@ -88,33 +88,43 @@ class MainServlet extends HttpServlet {
 			// 1. Create input map
 			String verb = request.getMethod();
 			String uri  = request.getRequestURI();
-			Map<String,String[]> map = request.getParameterMap();
+			String pattern = verb + " " + uri;
+			System.out.println(pattern);
 			
-			System.out.println(verb + " " + uri);
-			System.out.println("Map:");
-			for (String key : map.keySet()) {
-				System.out.print(key + " -> ");
-				String[] items = map.get(key);
-				for (String s : items) {
-					System.out.print(s + " ");
-				}
-				System.out.println();
+			Map<String,String[]> rawMap = request.getParameterMap();
+			Map<String,String[]> map = new TreeMap<>();
+			for (String key : rawMap.keySet()) {
+				String[] items = rawMap.get(key);
+				map.put(key, items);
 			}
-			System.out.println();
+			printMap(map);
 			
 			// 2. Extract user detail
 			
 			// 3. Check the handler
-			Handler h = (Handler)Naming
-						.lookup("rmi://localhost:4700/sample");
+			Handler remote = (Handler)Naming.lookup
+								("rmi://localhost:4700/sample");
 			
-			String result = h.call(verb + " " + uri, null);
+			String result = remote.call(pattern, map);
+			printMap(map);
 			
 			var out = response.getWriter();
 			out.println("The Main Servlet " + result);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	void printMap(Map<String,String[]> map) {
+		for (String key : map.keySet()) {
+			System.out.print(key + " -> ");
+			String[] items = map.get(key);
+			for (String s : items) {
+				System.out.print(s + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();	
 	}
 	
 }
