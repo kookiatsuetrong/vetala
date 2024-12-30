@@ -33,11 +33,9 @@ class SimpleHandler extends UnicastRemoteObject implements Handler {
 		String result = "Not Found";
 		switch (path) {
 			case "GET /external"        -> result = "The Home";
-			case "GET /external/test"   -> result = "The Test Application";
-			case "GET /external/search" -> result = "The Search Application";
+			case "GET /external/test"   -> result = "The Test App";
+			case "GET /external/search" -> result = "The Search App";
 		}
-		map.put("hello", new String[] {"world"});
-		printMap(map);
 		return result;
 	}
 	

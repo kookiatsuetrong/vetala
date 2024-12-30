@@ -94,7 +94,7 @@ class MainServlet extends HttpServlet {
 		System.out.println(pattern);
 		
 		try {
-			String starting = null;
+			String starting = "";
 			String[] items = uri.trim().split("/");
 			if (items.length > 1) {
 				starting = items[1];
@@ -103,8 +103,16 @@ class MainServlet extends HttpServlet {
 				externalService(request, response);
 				return;
 			}
+			/*
+			if (condition) {
+				whatever();
+				return
+			}
+			*/
+
 			// The fallback condition
 			internalService(request, response);
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -129,7 +137,7 @@ class MainServlet extends HttpServlet {
 		String verb = request.getMethod();
 		String uri  = request.getRequestURI();
 		String pattern = verb + " " + uri;
-		System.out.println(pattern);
+		
 		Map<String,String[]> rawMap = request.getParameterMap();
 		Map<String,String[]> map = new TreeMap<>();
 		for (String key : rawMap.keySet()) {
@@ -138,17 +146,16 @@ class MainServlet extends HttpServlet {
 		}
 		printMap(map);
 		
-		try {	
+		try {
 			// 2. Extract user detail
 			
 			// 3. Call the handler
 			Handler remote = (Handler)Naming.lookup(Vetala.rmiRegistry);
-			
 			String result = remote.call(pattern, map);
-			printMap(map);
-			
+
 			var out = response.getWriter();
 			out.println("The External Service " + result);
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
