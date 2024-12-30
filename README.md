@@ -13,10 +13,15 @@ GET  / ------------->   '
                         '
                         '---> Vetala Engine
                               '
+                              '---> Internal
+                              '     '-- Servlet
+                              '     '-- JavaServer Pages
+                              '     '-- Static Files
+                              '     '-- User Management
                               '
-                              ' RMI
-                              '
-                              '---> Vetala Handler
+                              '---> External (RMI)
+                                    (Vetala Handler)
+
 ```
 
 Starting Vetala Engine
