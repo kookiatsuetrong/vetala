@@ -29,7 +29,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Vetala {
+class Vetala {
 
 	public static final int rmiPort = 4700;
 	public static final String rmiRegistry = 
@@ -88,28 +88,57 @@ class MainServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request,
 						HttpServletResponse response) {
+		String verb = request.getMethod();
+		String uri  = request.getRequestURI();
+		String pattern = verb + " " + uri;
+		System.out.println(pattern);
+		
 		try {
-			// 1. Create input map
-			String verb = request.getMethod();
-			String uri  = request.getRequestURI();
-			String pattern = verb + " " + uri;
-			System.out.println(pattern);
-			
-			String[] paths = uri.trim().split("/");
-			if (paths.length > 1 && 
-				"manager".equals(paths[1])) {
-				managerService(request, response);
+			String starting = null;
+			String[] items = uri.trim().split("/");
+			if (items.length > 1) {
+				starting = items[1];
+			}
+			if ("external".equals(starting)) {
+				externalService(request, response);
 				return;
 			}
-			
-			Map<String,String[]> rawMap = request.getParameterMap();
-			Map<String,String[]> map = new TreeMap<>();
-			for (String key : rawMap.keySet()) {
-				String[] items = rawMap.get(key);
-				map.put(key, items);
-			}
-			printMap(map);
-			
+			// The fallback condition
+			internalService(request, response);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	void internalService(HttpServletRequest request,
+						HttpServletResponse response) {
+		System.out.println("The Internal Service");
+		try {
+			var out = response.getWriter();
+			out.println("The Internal Service");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	void externalService(HttpServletRequest request,
+						HttpServletResponse response) {
+		System.out.println("The External Service");
+		
+		// 1. Create input map
+		String verb = request.getMethod();
+		String uri  = request.getRequestURI();
+		String pattern = verb + " " + uri;
+		System.out.println(pattern);
+		Map<String,String[]> rawMap = request.getParameterMap();
+		Map<String,String[]> map = new TreeMap<>();
+		for (String key : rawMap.keySet()) {
+			String[] items = rawMap.get(key);
+			map.put(key, items);
+		}
+		printMap(map);
+		
+		try {	
 			// 2. Extract user detail
 			
 			// 3. Call the handler
@@ -119,7 +148,7 @@ class MainServlet extends HttpServlet {
 			printMap(map);
 			
 			var out = response.getWriter();
-			out.println("The Main Servlet " + result);
+			out.println("The External Service " + result);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -135,16 +164,6 @@ class MainServlet extends HttpServlet {
 			System.out.println();
 		}
 		System.out.println();	
-	}
-	
-	void managerService(HttpServletRequest request,
-						HttpServletResponse response) {
-		try {
-			var out = response.getWriter();
-			out.println("The Manager");
-		} catch (Exception e) {
-			System.out.println(e);
-		}
 	}
 }
 
