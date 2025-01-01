@@ -7,19 +7,12 @@
 	</session-config>
 	<servlet>
 		<servlet-name>main-servlet</servlet-name>
-		<servlet-class>org.vetala.Server</servlet-class>
+		<servlet-class>MainServlet</servlet-class>
 		<async-supported>true</async-supported>
-		<init-param>
-			<param-name>controller-1</param-name>
-			<param-value>Main</param-value>
-		</init-param>
-		<init-param>
-			<param-name>controller-2</param-name>
-			<param-value>Sample</param-value>
-		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>main-servlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>
+

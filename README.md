@@ -1,7 +1,6 @@
 ## Vetala
 
-Vetala is a non-stop Java web service and web application.
-
+Vetala is a non-stop web server for Java application.
 
 ```
 From HTTP Request:

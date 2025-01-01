@@ -3,8 +3,7 @@
  *
  * Usage:
  *
- * java -classpath "runtime/*" Vetala \
- *      --home web --port 7300
+ * java Vetala --home web --port 7300
  *
  */
 import java.io.File;
@@ -14,20 +13,12 @@ import org.apache.catalina.Service;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.connector.Connector;
+import org.apache.catalina.servlets.DefaultServlet;
 
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.util.logging.LogManager;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
-
-import java.io.PrintWriter;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 class Vetala {
 
@@ -69,160 +60,22 @@ class Vetala {
 			tomcat.setBaseDir(working);
 			tomcat.setSilent(!verbose);
 			
+			File file = new File(home);
+			var context1 = tomcat.addWebapp("", file.getAbsolutePath());
+			context1.setAltDDName("servlet.xml");
+			
+			// var context2 = tomcat.addContext("/external", null);
+			// tomcat.addServlet("", "m-servlet", new MainServlet());
+			// context1.addServletMappingDecoded("/", "m-servlet");
+			
 			var connector = tomcat.getConnector(); // Mandatory
-			
-			var context = tomcat.addContext("", null);
-			Tomcat.addServlet(context, "main", new MainServlet());
-			context.addServletMappingDecoded("/", "main");
-			
 			tomcat.start();
 			tomcat.getServer().await();
+			
 		} catch (Exception e) {
 			System.out.println("ERROR " + e);
 		}
 	}
 }
-
-class MainServlet extends HttpServlet {
-	
-	@Override
-	public void service(HttpServletRequest request,
-						HttpServletResponse response) {
-		String verb = request.getMethod();
-		String uri  = request.getRequestURI();
-		String pattern = verb + " " + uri;
-		System.out.println(pattern);
-		
-		try {
-			String starting = "";
-			String[] items = uri.trim().split("/");
-			if (items.length > 1) {
-				starting = items[1];
-			}
-			if ("external".equals(starting)) {
-				externalService(request, response);
-				return;
-			}
-			/*
-			if (condition) {
-				whatever();
-				return
-			}
-			*/
-
-			// The fallback condition
-			internalService(request, response);
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-	
-	void internalService(HttpServletRequest request,
-						HttpServletResponse response) {
-		System.out.println("The Internal Service");
-		try {
-			var out = response.getWriter();
-			out.println("The Internal Service");
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-	
-	void externalService(HttpServletRequest request,
-						HttpServletResponse response) {
-		System.out.println("The External Service");
-		
-		// 1. Create input map
-		String verb = request.getMethod();
-		String uri  = request.getRequestURI();
-		String pattern = verb + " " + uri;
-		
-		Map<String,String[]> rawMap = request.getParameterMap();
-		Map<String,String[]> map = new TreeMap<>();
-		for (String key : rawMap.keySet()) {
-			String[] items = rawMap.get(key);
-			map.put(key, items);
-		}
-		printMap(map);
-		
-		try {
-			// 2. Extract user detail
-			
-			// 3. Call the handler
-			Handler remote = (Handler)Naming.lookup(Vetala.rmiRegistry);
-			String result = remote.call(pattern, map);
-
-			var out = response.getWriter();
-			out.println("The External Service " + result);
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-	
-	void printMap(Map<String,String[]> map) {
-		for (String key : map.keySet()) {
-			System.out.print(key + " -> ");
-			String[] items = map.get(key);
-			for (String s : items) {
-				System.out.print(s + " ");
-			}
-			System.out.println();
-		}
-		System.out.println();	
-	}
-}
-
-/*
-
-ServletRequest
-
-startAsync()
-startAsync(request, response)
-
-getAsyncContext()
-getDispatcherType()
-
-String                getContentType()
-String                getParameter()
-Map<String,String[]>  getParameterMap()
-String                getProtocol()
-String                getScheme()
-
-HttpServletRequest
-
-String                getMethod()
-String                getRequestURI()
-StringBuffer          getRequestURL()
-Collection<Part>      getParts()
-
-HttpSession           getSession()
-HttpSession           getSession(boolean create)
-
-Cookie[]              getCookies()
-
-Enumeration<String>   getHeaderNames()
-Enumeration<String>   getHeaders(String s)
-
-
-ServletContext.getRequestDispatcher(String s)
-ServletContext.getNamedDispatcher(String name)
-ServletRequest.getRequestDispatcher(String s)
-
-
-/favicon.ico
-
-
-*/
-
-
-
-
-
-
-
-
-
 
 
