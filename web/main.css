@@ -1,0 +1,325 @@
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-Black.ttf") format("opentype");
+	font-weight: 900;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-BlackItalic.ttf") format("opentype");
+	font-weight: 900;
+	font-style: italic;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-ExtraBold.ttf") format("opentype");
+	font-weight: 800;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-ExtraBoldItalic.ttf") format("opentype");
+	font-weight: 800;
+	font-style: italic;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-Bold.ttf") format("opentype");
+	font-weight: 700;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-BoldItalic.ttf") format("opentype");
+	font-weight: 700;
+	font-style: italic;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-SemiBold.ttf") format("opentype");
+	font-weight: 600;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-SemiBoldItalic.ttf") format("opentype");
+	font-weight: 600;
+	font-style: italic;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-Medium.ttf") format("opentype");
+	font-weight: 500;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-MediumItalic.ttf") format("opentype");
+	font-weight: 500;
+	font-style: italic;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-Regular.ttf") format("opentype");
+	font-weight: 400;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-RegularItalic.ttf") format("opentype");
+	font-weight: 400;
+	font-style: italic;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-Light.ttf") format("opentype");
+	font-weight: 300;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-LightItalic.ttf") format("opentype");
+	font-weight: 300;
+	font-style: italic;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-ExtraLight.ttf") format("opentype");
+	font-weight: 200;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-ExtraLightItalic.ttf") format("opentype");
+	font-weight: 200;
+	font-style: italic;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-Thin.ttf") format("opentype");
+	font-weight: 100;
+}
+@font-face {
+	font-family: "publicsans";
+	src: url("/publicsans/PublicSans-ThinItalic.ttf") format("opentype");
+	font-weight: 100;
+	font-style: italic;
+}
+
+html {
+	font-size: 1rem;
+}
+
+body {
+	font-family: "publicsans";
+	color: #333;
+	background: #f8fffd;
+	/* background: #f8fdff; */
+	/* background: #fffdfd; */
+	background-image: url(background.png);
+	background-size: 100% auto;
+	
+	min-height: 100dvh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	/*
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	*/
+}
+
+h1 { font-size: 2.00rem; font-weight: 400; margin: 0; }
+h2 { font-size: 1.75rem; font-weight: 400; margin: 0; }
+h3 { font-size: 1.50rem; font-weight: 400; margin: 0; }
+
+.container {
+	width: 90%;
+	margin: 0 auto;
+	max-width: 1024px;
+}
+
+:root {
+	/* green */
+	--header-background: linear-gradient(240deg, 
+						rgba(187, 221, 187, .75),
+						rgba( 32, 176, 160, .85));
+	/* red */
+	/*
+	--header-background: linear-gradient(240deg, 
+						rgba(221, 187, 187, .75),
+						rgba(176, 32, 48, .85));
+	*/
+	/* blue */
+	/*
+	--header-background: linear-gradient(240deg, 
+						rgba(120, 220, 255, .75),
+						rgba( 50, 140, 220, .85));
+	*/
+	
+	/* green */
+	--button-background: rgba( 32, 176, 160, .85);
+	--button-background-hover: rgba( 32, 176, 160, 1);
+	/* red */
+	/*
+	--button-background: rgba( 176, 32, 32, .8);
+	--button-background-hover: rgba( 176, 32, 32, 1);
+	*/
+	/* blue */
+	/*
+	--button-background:       rgba( 32, 160, 220, .85);
+	--button-background-hover: rgba( 32, 160, 220, 1);
+	*/
+	
+	/* green */
+	--brand-color: rgba(32, 180, 160, 1);
+	/* red */
+	/* --brand-color: rgba(220, 32, 32, 1); */
+	/* blue */
+	/* --brand-color: rgba(32, 160, 220, 1); */
+	
+	--footer-background: rgba(0, 0, 0, .75);
+	
+	--form-border: #bbddff;
+	
+	--input-border:           rgba(0, 0, 0, 0);
+	--input-border-hover:     rgba(0, 0, 0, 0.1);
+	--input-border-focus:     rgba(0, 0, 0, 0.1);
+	--input-background:       rgba(128,128,128,.10);
+	--input-background-hover: rgba(128,128,128,.10);
+	--input-background-focus: rgba(255,255,255,.75);
+	--input-height: 2rem;
+	--input-border-radius: .25rem;
+	--textarea-height: 8rem;
+	
+	--button-border: rgba(25%, 50%, 25%, .75);
+	--button-border-hover: #666;
+	--button-text-color: white;
+	--button-text-color-hover: #666;
+	--button-height: 2.275rem;
+	--button-border-radius: .25rem;
+
+}
+* {
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+p {
+	font-size: 1.10rem;
+	line-height: 1.75rem;
+	color: #333;
+}
+label {
+	margin-bottom: .25rem;
+}
+input,
+textarea {
+	border: .1rem solid var(--input-border);
+	border-radius: var(--input-border-radius);
+	height: var(--input-height);
+	font-size: 1.1rem;
+	padding: 0.06rem .5rem;
+	transition: border .2s linear;
+	width: calc(100% - 1.17rem);
+	background: var(--input-background);
+}
+textarea {
+	height: var(--textarea-height);
+	padding: .5rem;
+	resize: vertical;
+}
+input:hover,
+textarea:hover {
+	border: .1rem solid var(--input-border-hover);
+	background: var(--input-background-hover);
+}
+input:focus,
+textarea:focus {
+	border: .1rem solid var(--input-border-focus);
+	background: var(--input-background-focus);
+}
+input::placeholder,
+textarea::placeholder {
+	color: #aaa;
+	font-size: 1rem;
+	font-weight: 300;
+	transition: color .5s linear;
+}
+input:hover::placeholder,
+textarea:hover::placeholder {
+	/* color: #999; */
+}
+button,
+.button {
+	background: var(--button-background);
+	color: var(--button-text-color);
+	border: .1rem solid var(--button-border);
+	border-radius: var(--button-border-radius);
+	height: var(--button-height);
+	font-size: 1.1rem;
+	padding: .27rem .5em;
+	transition: color .15s linear, 
+				border .15s linear;
+}
+button:hover,
+.button:hover {
+	background: var(--button-background);
+	color: var(--button-text-color-hover);
+	border: .1rem solid var(--button-border-hover);
+	cursor: pointer;
+}
+header {
+	min-height: 2rem;
+}
+main {
+	padding-bottom: 2rem;
+}
+footer {
+	background: var(--footer-background);
+	color: white;
+	min-height: 10rem;
+}
+footer a {
+	color: #ccc;
+	display: block;
+	margin-bottom: 1rem;
+	transition: transform .15s linear,
+				color .15s linear;
+}
+footer a:hover {
+	color: white;
+	transform: translateX(.5rem);
+}
+footer p {
+	color: white;
+}
+footer .footer-container {
+	display: grid;
+	column-gap: 2rem;
+}
+@media (min-width: 480px) {
+	footer .footer-container {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+@media (min-width: 768px) {
+	footer .footer-container {
+		grid-template-columns: 1fr 1fr 1.8fr;
+	}
+}
+
+.user-form {
+	max-width: 320px;
+	margin: 0 auto;
+}
+.user-form h3 {
+	margin-bottom: 1rem;
+}
+.user-form input,
+.user-form textarea {
+	margin-bottom: .5rem;
+}
+.error {
+	display: block;
+	padding: 1rem;
+	background: rgba(255, 200, 200, .25);
+	border: .1rem solid rgba(192, 128, 128, .50);
+	border-radius: .35rem;
+	margin-bottom: 1rem;
+}

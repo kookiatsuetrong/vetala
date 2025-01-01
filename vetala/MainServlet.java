@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
 
 public class MainServlet extends HttpServlet {
 	
@@ -50,11 +51,22 @@ public class MainServlet extends HttpServlet {
 						HttpServletResponse response) {
 		System.out.println("The Internal Service");
 		try {
-			var uri  = request.getRequestURI();
+			String uri  = request.getRequestURI();
+			if ("/user-check-email".equals(uri)) {
+				Context c = new Context();
+				c.request = request;
+				c.response = response;
+				String s = (String)askEmail(c);
+				response.setHeader("Content-Type", "text/html");
+				PrintWriter out = response.getWriter();
+				out.print(s);
+				return;
+			}
+			
 			var context = getServletContext();
-			var path = context.getRealPath(uri);
-			var file = new File(path);
-			var found = file.exists();
+			var path    = context.getRealPath(uri);
+			var file    = new File(path);
+			var found   = file.exists();
 
 			if (found) {
 				var rd1 = context.getNamedDispatcher("default");
@@ -67,6 +79,24 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	/*
+	*  Asks email address from the visitor
+	*
+	*  GET /user-check-email
+	*
+	*/
+	Object askEmail(Context context) {
+		if (context.isLoggedIn()) {
+			return context.redirect("/user-profile");
+		}
+		HttpSession session = context.getSession(true);
+		String code = Tool.randomPhotoCode();
+		String photoCode = Tool.createPhotoCode(code);
+		session.setAttribute("code", code);
+		session.setAttribute("photo-code", photoCode);
+		return context.render("/WEB-INF/user-ask-email.jsp");
 	}
 	
 	void externalService(HttpServletRequest request,
