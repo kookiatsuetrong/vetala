@@ -1,3 +1,6 @@
+import server.Email;
+import server.EmailSender;
+
 import java.util.Map;
 import jakarta.json.JsonObject;
 import jakarta.servlet.http.HttpSession;

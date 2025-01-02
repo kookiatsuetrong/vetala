@@ -1,3 +1,5 @@
+package server;
+
 public class Email {
 
 	public void sendActivationCode(String target, String code) {

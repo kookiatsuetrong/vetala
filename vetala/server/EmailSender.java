@@ -1,3 +1,5 @@
+package server;
+
 import jakarta.mail.Authenticator;
 import jakarta.mail.Message;
 import jakarta.mail.Multipart;
