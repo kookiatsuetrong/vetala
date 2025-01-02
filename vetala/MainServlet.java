@@ -15,6 +15,56 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
+/*
+
+	Any POST request must be immediately followed by GET Request
+
+	Create Account
+	'
+	'-- GET  /user-check-email
+		POST /user-check-email
+		'
+		'-- GET  /user-register
+			POST /user-register
+			'
+			'-- GET /user-profile
+				'
+				'-- GET /user-logout
+
+	Log In
+	'
+	'-- GET  /user-check-email
+		POST /user-check-email
+		'
+		'-- GET  /user-login
+			POST /user-login
+			'
+			'-- GET /user-profile
+				'
+				'-- GET /user-logout
+
+	Recover Password
+	'
+	'-- GET  /reset-password
+		POST /reset-password
+		'
+		'-- GET  /reset-password-code
+			POST /reset-password-code
+			'
+			'-- GET  /reset-password-final
+
+
+	Contact
+	'
+	'-- GET  /contact
+		POST /contact
+		'
+		'-- GET  /contact-final
+
+*/
+
+
+
 public class MainServlet extends HttpServlet {
 	
 	@Override
@@ -83,12 +133,77 @@ public class MainServlet extends HttpServlet {
 				sendAsWeb(context, result);
 				return;
 			}
+
+			if ( "GET /user-login".equals(pattern)) {
+				String result = (String)showLogInPage(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ("POST /user-login".equals(pattern)) {
+				String result = (String)checkPassword(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ( "GET /user-profile".equals(pattern)) {
+				String result = (String)showProfilePage(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ( "GET /user-logout".equals(pattern)) {
+				String result = (String)showLogOutPage(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ( "GET /reset-password".equals(pattern)) {
+				String result = (String)showResetPasswordPage(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ("POST /reset-password".equals(pattern)) {
+				String result = (String)checkResetPassword(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ( "GET /reset-password-code".equals(pattern)) {
+				String result = (String)showResetPasswordCode(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ("POST /reset-password-code".equals(pattern)) {
+				String result = (String)checkResetPasswordCode(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ( "GET /reset-password-final".equals(pattern)) {
+				String result = (String)showResetPasswordFinal(context);
+				sendAsWeb(context, result);
+				return;
+			}
 			
 			if ( "GET /contact".equals(pattern)) {
 				String result = (String)showContactPage(context);
 				sendAsWeb(context, result);
 				return;
-				
+			}
+
+			if ("POST /contact".equals(pattern)) {
+				String result = (String)saveContactDetail(context);
+				sendAsWeb(context, result);
+				return;
+			}
+
+			if ( "GET /contact-final".equals(pattern)) {
+				String result = (String)showContactFinalPage(context);
+				sendAsWeb(context, result);
+				return;
 			}
 			
 		} catch (Exception e) {
@@ -358,7 +473,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  GET /user-login
 	*/
-	static Object showLogInPage(Context context) {
+	Object showLogInPage(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -376,7 +491,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  POST /user-login
 	*/
-	static Object checkPassword(Context context) {
+	Object checkPassword(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -401,7 +516,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  GET /user-profile
 	*/
-	static Object showProfilePage(Context context) {
+	Object showProfilePage(Context context) {
 		if (context.isLoggedIn()) {
 			// display user profile page
 			return context.render("/WEB-INF/user-profile.jsp");
@@ -417,7 +532,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*   GET /user-logout
 	*/
-	static Object showLogOutPage(Context context) {
+	Object showLogOutPage(Context context) {
 		if (context.isLoggedIn()) {
 			HttpSession session = context.getSession(true);
 			session.removeAttribute("email");
@@ -433,7 +548,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  GET /reset-password
 	*/
-	static Object showResetPasswordPage(Context context) {
+	Object showResetPasswordPage(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -451,7 +566,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  POST /reset-password
 	*/
-	static Object checkResetPassword(Context context) {
+	Object checkResetPassword(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -497,7 +612,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  GET /reset-password-code
 	*/
-	static Object showResetPasswordCode(Context context) {
+	Object showResetPasswordCode(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -517,7 +632,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  POST /reset-password-code
 	*/
-	static Object resetPasswordCode(Context context) {
+	Object checkResetPasswordCode(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -579,7 +694,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  GET /reset-password-final
 	*/
-	static Object showResetPasswordFinal(Context context) {
+	Object showResetPasswordFinal(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -592,7 +707,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  GET /contact
 	*/
-	static Object showContactPage(Context context) {
+	Object showContactPage(Context context) {
 		HttpSession session = context.getSession(true);
 		if (context.isLoggedIn()) {
 			User user = (User)session.getAttribute("user");
@@ -611,7 +726,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  POST /contact
 	*/
-	static Object saveContactDetail(Context context) {
+	Object saveContactDetail(Context context) {
 		String topic  = context.getParameter("topic");
 		String detail = context.getParameter("detail");
 		String email  = context.getParameter("email");
@@ -666,16 +781,14 @@ public class MainServlet extends HttpServlet {
 		return context.redirect("/contact-final");
 	}
 	
-	
 	/*
 	*  Displays the contact page final message
 	*
 	*  GET /contact-final
 	*/
-	static Object showContactFinalPage(Context context) {
+	Object showContactFinalPage(Context context) {
 		return context.render("/WEB-INF/contact-final.jsp");
-	}
-	
+	}	
 	
 }
 
