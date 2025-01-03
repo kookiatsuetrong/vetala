@@ -2,3 +2,5 @@ temporary
 working
 /target/
 setup.txt
+runtime/*.class
+runtime/server/*.class
