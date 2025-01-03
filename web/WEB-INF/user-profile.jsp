@@ -93,7 +93,8 @@
 					background: var(--header-background);
 				}
 				.block-menu h3 {
-					font-weight: bolder;
+					font-weight: regular;
+					font-size: 2rem;
 					color: white;
 				}
 				.block-menu p {
