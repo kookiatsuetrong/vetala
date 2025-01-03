@@ -1,6 +1,6 @@
+<%@page import="server.User" %>
 <%
-// User footerUser = (User)session.getAttribute("user");
-Object footerUser = null;
+User footerUser = (User)session.getAttribute("user");
 %>
 		<footer>
 			<section class="container">

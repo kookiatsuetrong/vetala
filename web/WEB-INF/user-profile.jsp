@@ -1,4 +1,4 @@
-<%@page import="start.web.User"%><!DOCTYPE html>
+<%@page import="server.User"%><!DOCTYPE html>
 <html>
 	<head>
 		<title>Profile</title>
