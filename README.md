@@ -3,13 +3,49 @@
 Vetala is a non-stop web server for Java application.
 
 Starting Vetala Engine
-```bash
+```
 git clone https://github.com/kookiatsuetrong/vetala
 cd vetala
 sudo mysql < schema.sql
 bash make.sh
 ```
 And open web browser to http://localhost:12345
+
+
+Directory structures
+```
+
+vetala
+'-- servlet.xml                  Java Web Deployment Descriptor
+'-- web                          Dynamically Web Application
+'   '-- index.jsp                JavaServer Pages
+'   '
+'   '-- WEB-INF                  Internal View
+'       '-- user-register.jsp
+'
+'-- make.sh                      Make file for Unix
+'-- make.bat                     Make file for Windows
+'-- schema.sql                   Database Schema
+'
+'-- vetala                       Internal Engine
+'   '-- Vetala.java              Embedded Tomcat
+'   '-- MainServlet.java         The Main Servlet
+'   '-- Context.java             Java Request / Response
+'   '-- ErrorMessage.java
+'   '-- Storage.java             Database Access Layer
+'   '-- Tool.java
+'   '
+'   '-- server                   Shared Code with View
+'   '   '-- User.java
+'   '   '-- Email.java
+'   '   '-- EmailSender.java
+'   '
+'   '-- Handler.java             Template for RMI Handler
+'   '-- SimpleHandler.java
+'   '
+
+```
+
 
 ```
 From HTTP Request:
@@ -172,7 +208,21 @@ static Registry 	getRegistry(String host, int port)
 
 ```
 
+Project backlogs
 
+```
+M01: As a member, 
+	I want to have my profile picture.
 
+V01: As a visitor, 
+	I want to copy/paste my photo in the contact page.
+
+V02: As a visitor, 
+	I want to create account from my social network account 
+	including Facebook or Google.
+
+A01: As an administrator,
+	I want to configure connection string.
+```
 
 
