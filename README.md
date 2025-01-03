@@ -219,10 +219,13 @@ Project backlogs
 
 ```
 M01: As a member, 
+	I want to change my password.
+	
+M02: As a member, 
 	I want to have my profile picture.
 
 V01: As a visitor, 
-	I want to copy/paste my photo in the contact page.
+	I want to copy/paste a photo in the contact page.
 
 V02: As a visitor, 
 	I want to create account from my social network account 
@@ -230,6 +233,9 @@ V02: As a visitor,
 
 A01: As an administrator,
 	I want to configure connection string.
+	
+A02: As an administrator,
+	I want to enable/disable RMI handler.
 ```
 
 
