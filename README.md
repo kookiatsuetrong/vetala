@@ -2,6 +2,8 @@
 
 Vetala is a non-stop web server for Java application.
 
+![](vetala-screen.png)
+
 Starting Vetala Engine
 ```
 git clone https://github.com/kookiatsuetrong/vetala
