@@ -14,17 +14,20 @@ And open web browser to http://localhost:12345
 
 Directory structures
 ```
-
 vetala
 '-- servlet.xml                  Java Web Deployment Descriptor
-'-- web                          Dynamically Web Application
+'-- web                          Ordinary Java Web Application
 '   '-- index.jsp                JavaServer Pages
+'   '-- normalize.css
+'   '-- main.css
+'   '-- photo.jpg
+'   '-- favicon.ico
 '   '
-'   '-- WEB-INF                  Internal View
+'   '-- WEB-INF                  View (Access from Servlet)
 '       '-- user-register.jsp
 '
-'-- make.sh                      Make file for Unix
-'-- make.bat                     Make file for Windows
+'-- make.sh                      Make for Unix
+'-- make.bat                     Make for Windows
 '-- schema.sql                   Database Schema
 '
 '-- vetala                       Internal Engine
@@ -42,8 +45,12 @@ vetala
 '   '
 '   '-- Handler.java             Template for RMI Handler
 '   '-- SimpleHandler.java
-'   '
-
+'
+'-- runtime
+    '-- embedded-tomcat.jar
+    '-- jdbc.jar
+    '-- xxx.class
+    '-- yyy.class
 ```
 
 
