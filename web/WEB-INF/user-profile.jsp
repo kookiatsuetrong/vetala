@@ -61,7 +61,7 @@
 					<h3>Profile</h3>
 					<p>
 						View the profile of
-						current user.
+						current account.
 					</p>
 				</a>
 				<a class="block-menu" href="/user-logout">
@@ -74,8 +74,7 @@
 					</svg>
 					<h3>Log Out</h3>
 					<p>
-						Log out, and use the website 
-						anonymously.
+						Log out from current account.
 					</p>
 				</a>
 				<style>
