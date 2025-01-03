@@ -103,11 +103,9 @@ public class MainServlet extends HttpServlet {
 				return;
 			}
 			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		} catch (Exception e) { }
 		
-		// Case 1 - 3
+		// Case 1 - 4
 		internalService(request, response);
 	}
 	
@@ -221,9 +219,13 @@ public class MainServlet extends HttpServlet {
 				return;
 			}
 			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+			if ( "GET /error".equals(pattern)) {
+				String result = (String)showErrorPage(context);
+				sendAsWeb(context, result);
+				return;
+			}
+			
+		} catch (Exception e) { }
 		
 		// Case 2: Static File
 		var sc = getServletContext();
@@ -234,19 +236,23 @@ public class MainServlet extends HttpServlet {
 
 			if (found) {
 				System.out.println("Static file " + file);
-				var rd1 = sc.getNamedDispatcher("default");
-				rd1.forward(request, response);
+				var rd = sc.getNamedDispatcher("default");
+				rd.forward(request, response);
 				return;
 			}
 		} catch (Exception e) { }
 		
-		// Case 3: Non-Static File
+		// Case 3: JSP File
 		try {
-			var rd2 = sc.getRequestDispatcher(uri);
-			rd2.forward(request, response);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+			if (uri.endsWith(".jsp")) {
+				var rd = sc.getRequestDispatcher(uri);
+				rd.forward(request, response);
+				return;
+			}
+		} catch (Exception e) { }
+		
+		// Case 4: Not Found
+		context.redirect("/error");
 	}
 	
 	void externalService(HttpServletRequest request,
@@ -478,7 +484,7 @@ public class MainServlet extends HttpServlet {
 	*
 	*  GET /error
 	*/
-	static Object showError(Context context) {
+	static Object showErrorPage(Context context) {
 		return context.render("/WEB-INF/error.jsp");
 	}
 
