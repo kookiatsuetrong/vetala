@@ -13,120 +13,69 @@
 				<%
 				User user = (User)session.getAttribute("user");
 				%>
-				<p>Email: <%= user.email %></p>				
+				<p>User: <%= user.email %></p>				
 			</section>
 			
 			<section class="container block-menu-container">
-				<a class="block-menu" href="">
+				<a class="block-menu" href="/">
 					<svg width="24" height="24" 
 						viewBox="0 0 24 24" fill="none" stroke="white" 
-						stroke-width="1.5" stroke-linecap="round" 
+						stroke-width="2" stroke-linecap="round" 
 						stroke-linejoin="round">
-						<path d="M6 2L3 6v14c0 1.1.9 
-							2 2 2h14a2 2 0 0 0 
-							2-2V6l-3-4H6zM3.8 
-							6h16.4M16 10a4 4 0 1 1-8 0" />
+						<path d="M20 9v11a2 2 0 0 
+								1-2 2H6a2 2 0 0 1-2-2V9" />
+						<path d="M9 22V12h6v10M2 
+								10.6L12 2l10 8.6" />
 					</svg>
-					<h3>Menu Item</h3>
+					<h3>Home</h3>
 					<p>
-						Detail information about
-						this menu item.
+						The landing page of the website.
 					</p>
 				</a>
-				<a class="block-menu" href="">
+				<a class="block-menu" href="/contact">
 					<svg width="24" height="24" 
 						viewBox="0 0 24 24" fill="none" stroke="white" 
-						stroke-width="1.5" stroke-linecap="round" 
+						stroke-width="2" stroke-linecap="round" 
 						stroke-linejoin="round">
-						<path d="M6 2L3 6v14c0 1.1.9 
-							2 2 2h14a2 2 0 0 0 
-							2-2V6l-3-4H6zM3.8 
-							6h16.4M16 10a4 4 0 1 1-8 0" />
+						<path d="M4 4h16c1.1 0 2 .9 2 
+							2v12c0 1.1-.9 2-2 2H4c-1.1 
+							0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+						<polyline points="22,6 12,13 2,6" />
 					</svg>
-					<h3>Menu Item</h3>
+					<h3>Contact</h3>
 					<p>
-						Detail information about
-						this menu item.
+						Contact the administrator
+						of the website.
 					</p>
 				</a>
-				<a class="block-menu" href="">
+				<a class="block-menu" href="/user-profile">
 					<svg width="24" height="24" 
 						viewBox="0 0 24 24" fill="none" stroke="white" 
-						stroke-width="1.5" stroke-linecap="round" 
+						stroke-width="2" stroke-linecap="round" 
 						stroke-linejoin="round">
-						<path d="M6 2L3 6v14c0 1.1.9 
-							2 2 2h14a2 2 0 0 0 
-							2-2V6l-3-4H6zM3.8 
-							6h16.4M16 10a4 4 0 1 1-8 0" />
+						<path d="M5.52 19c.64-2.2 1.84-3 
+							3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
+						<circle cx="12" cy="10" r="3" />
+						<circle cx="12" cy="12" r="10" />
 					</svg>
-					<h3>Menu Item</h3>
+					<h3>Profile</h3>
 					<p>
-						Detail information about
-						this menu item.
+						View the profile of
+						current user.
 					</p>
 				</a>
-				<a class="block-menu" href="">
+				<a class="block-menu" href="/user-logout">
 					<svg width="24" height="24" 
 						viewBox="0 0 24 24" fill="none" stroke="white" 
-						stroke-width="1.5" stroke-linecap="round" 
+						stroke-width="2" stroke-linecap="round" 
 						stroke-linejoin="round">
-						<path d="M6 2L3 6v14c0 1.1.9 
-							2 2 2h14a2 2 0 0 0 
-							2-2V6l-3-4H6zM3.8 
-							6h16.4M16 10a4 4 0 1 1-8 0" />
+						<path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+						<line x1="12" y1="2" x2="12" y2="12" />
 					</svg>
-					<h3>Menu Item</h3>
+					<h3>Log Out</h3>
 					<p>
-						Detail information about
-						this menu item.
-					</p>
-				</a>
-				<a class="block-menu" href="">
-					<svg width="24" height="24" 
-						viewBox="0 0 24 24" fill="none" stroke="white" 
-						stroke-width="1.5" stroke-linecap="round" 
-						stroke-linejoin="round">
-						<path d="M6 2L3 6v14c0 1.1.9 
-							2 2 2h14a2 2 0 0 0 
-							2-2V6l-3-4H6zM3.8 
-							6h16.4M16 10a4 4 0 1 1-8 0" />
-					</svg>
-					<h3>Menu Item</h3>
-					<p>
-						Detail information about
-						this menu item.
-					</p>
-				</a>
-				<a class="block-menu" href="">
-					<svg width="24" height="24" 
-						viewBox="0 0 24 24" fill="none" stroke="white" 
-						stroke-width="1.5" stroke-linecap="round" 
-						stroke-linejoin="round">
-						<path d="M6 2L3 6v14c0 1.1.9 
-							2 2 2h14a2 2 0 0 0 
-							2-2V6l-3-4H6zM3.8 
-							6h16.4M16 10a4 4 0 1 1-8 0" />
-					</svg>
-					<h3>Menu Item</h3>
-					<p>
-						Detail information about
-						this menu item.
-					</p>
-				</a>
-				<a class="block-menu" href="">
-					<svg width="24" height="24" 
-						viewBox="0 0 24 24" fill="none" stroke="white" 
-						stroke-width="1.5" stroke-linecap="round" 
-						stroke-linejoin="round">
-						<path d="M6 2L3 6v14c0 1.1.9 
-							2 2 2h14a2 2 0 0 0 
-							2-2V6l-3-4H6zM3.8 
-							6h16.4M16 10a4 4 0 1 1-8 0" />
-					</svg>
-					<h3>Menu Item</h3>
-					<p>
-						Detail information about
-						this menu item.
+						Log out, and use the website 
+						anonymously.
 					</p>
 				</a>
 				<style>
@@ -137,14 +86,11 @@
 				}
 				.block-menu {
 					padding: 1rem;
-					border: .15rem solid var(--button-border);
+					border: none;
 					border-radius: .5rem;
 					margin-bottom: 2rem;
 					background: rgba(20%, 80%, 40%, 0.8);
-					background: linear-gradient(45deg,
-										lightseagreen,
-										var(--button-background)
-										);
+					background: var(--header-background);
 				}
 				.block-menu h3 {
 					font-weight: bolder;
