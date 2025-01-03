@@ -1,5 +1,14 @@
+/*
+ * The Main Servlet of Vetala engine
+ *
+ * This servlet can be deployed from the deployment descriptor.
+ *
+ */
+ 
+import server.User;
 import server.Email;
 import server.EmailSender;
+
 import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,9 +23,13 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import server.User;
 
 /*
+	Common Operations:
+	- Create Account
+	- Log In
+	- Reset Password
+	- Contact
 
 	Any POST request must be immediately followed by GET Request
 
@@ -44,7 +57,7 @@ import server.User;
 				'
 				'-- GET /user-logout
 
-	Recover Password
+	Reset Password
 	'
 	'-- GET  /reset-password
 		POST /reset-password
@@ -53,7 +66,8 @@ import server.User;
 			POST /reset-password-code
 			'
 			'-- GET  /reset-password-final
-
+				'
+				'-- GET  /user-check-email
 
 	Contact
 	'

@@ -2,6 +2,15 @@
 
 Vetala is a non-stop web server for Java application.
 
+Starting Vetala Engine
+```bash
+git clone https://github.com/kookiatsuetrong/vetala
+cd vetala
+sudo mysql < schema.sql
+bash make.sh
+```
+And open web browser to http://localhost:12345
+
 ```
 From HTTP Request:
 
@@ -21,11 +30,6 @@ GET  / ------------->   '
                               '---> External (RMI)
                                     (Vetala Handler)
 
-```
-
-Starting Vetala Engine
-```
-bash make.sh
 ```
 
 From the definition of Handler interface
