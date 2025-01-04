@@ -55,6 +55,22 @@ vetala
     '-- yyy.class
 ```
 
+Common configuration (setup.txt) file.
+
+```
+connectionString = jdbc:mysql://127.0.0.1/sample?user=me&password=password
+
+rmiEnabled    = true
+
+emailEnabled  = true
+emailPassword = TheEmailPassword
+emailAddress  = noreply@server.com
+emailServer   = smtp.server.com
+emailSender   = The System Administrator
+emailPort     = 587
+emailSecurity = TLSv1.2
+```
+
 
 ```
 From HTTP Request:
