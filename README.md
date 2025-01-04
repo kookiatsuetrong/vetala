@@ -264,7 +264,10 @@ V02: As a visitor,
 
 A01: As an administrator,
 	I want to enable/disable RMI handler.
-	
+
+A02: As an administrator,
+	I want to force the system to reload configuration.
+
 ```
 
 

@@ -13,7 +13,7 @@
 				<%
 				User user = (User)session.getAttribute("user");
 				%>
-				<p>User: <%= user.email %></p>				
+				<p>User: <%= user == null ? "" : user.email %></p>				
 			</section>
 			
 			<section class="container block-menu-container">
@@ -79,6 +79,44 @@
 						Change password for current account.
 					</p>
 				</a>
+
+				<% if (user != null && "administrator".equals(user.type)) { %>
+				<a class="block-menu" href="/system-settings">
+					<svg width="24" height="24" 
+						viewBox="0 0 24 24" fill="none" stroke="white" 
+						stroke-width="2" stroke-linecap="round" 
+						stroke-linejoin="round">
+
+						<rect x= "3" y= "3" width="7" height="7" />
+						<rect x="14" y= "3" width="7" height="7" />
+						<rect x="14" y="14" width="7" height="7" />
+						<rect x= "3" y="14" width="7" height="7" />
+					</svg>
+					<h3>Settings</h3>
+					<p>
+						Change system settings and reload.
+					</p>
+				</a>
+
+				<a class="block-menu" href="/system-users">
+					<svg width="24" height="24" 
+						viewBox="0 0 24 24" fill="none" stroke="white" 
+						stroke-width="2" stroke-linecap="round" 
+						stroke-linejoin="round">
+
+						<rect x= "3" y= "3" width="7" height="7" />
+						<rect x="14" y= "3" width="7" height="7" />
+						<rect x="14" y="14" width="7" height="7" />
+						<rect x= "3" y="14" width="7" height="7" />
+					</svg>
+					<h3>Users</h3>
+					<p>
+						Display all users information.
+					</p>
+				</a>
+
+				<% } %>
+
 				<a class="block-menu" href="/user-logout">
 					<svg width="24" height="24" 
 						viewBox="0 0 24 24" fill="none" stroke="white" 

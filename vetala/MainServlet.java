@@ -316,12 +316,15 @@ public class MainServlet extends HttpServlet {
 		System.out.println();	
 	}
 	
+
 	void sendAsWeb(Context context, String result) {
+		/*
 		context.response.setHeader("Content-Type", "text/html");
 		try {
 			PrintWriter out = context.response.getWriter();
 			out.print(result);
 		} catch (Exception e) { }
+		*/
 	}
 	
 	/*

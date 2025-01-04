@@ -19,7 +19,11 @@ public class Storage {
 			var rs = ps.executeQuery();
 			if (rs.next()) {
 				u = new User();
-				u.email = rs.getString("email");
+				u.email     = rs.getString("email");
+				u.firstName = rs.getString("first_name");
+				u.lastName  = rs.getString("last_name");
+				u.password  = rs.getString("password");
+				u.type      = rs.getString("type");
 			}
 			rs.close(); ps.close(); cn.close();
 		} catch (Exception e) { }
@@ -40,7 +44,11 @@ public class Storage {
 			var rs = ps.executeQuery();
 			if (rs.next()) {
 				u = new User();
-				u.email = rs.getString("email");
+				u.email     = rs.getString("email");
+				u.firstName = rs.getString("first_name");
+				u.lastName  = rs.getString("last_name");
+				u.password  = rs.getString("password");
+				u.type      = rs.getString("type");
 			}
 			rs.close(); ps.close(); cn.close();
 		} catch (Exception e) { }
