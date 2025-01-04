@@ -233,10 +233,8 @@ static Registry 	getRegistry(String host, int port)
 Project backlogs
 
 ```
+
 M01: As a member, 
-	I want to change my password.
-	
-M02: As a member, 
 	I want to have my profile picture.
 
 V01: As a visitor, 

@@ -3,14 +3,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import server.User;
+import server.Setup;
 
 public class Storage {
 
-	static String source = "jdbc:mysql://127.0.0.1/sample" +
-					"?user=me&password=password";
-	
 	public static User 
 	getUserByEmail(String email) {
+		String source = Setup.connectionString;
 		var sql = "select * from users where email = ?";
 		User u = null;
 		try {
@@ -29,6 +28,7 @@ public class Storage {
 	
 	public static User
 	checkPassword(String email, String password) {
+		String source = Setup.connectionString;
 		var sql =   " select * from users where email = ? " +
 					" and password = sha2(?, 512)         ";
 		User u = null;
@@ -50,6 +50,7 @@ public class Storage {
 	public static boolean
 	createAccount(String email, String password, 
 			String firstName, String lastName) {
+		String source = Setup.connectionString;
 		boolean result = false;
 		var sql =   " insert into users                      " +
 					" (email,password,first_name,last_name)  " +
@@ -69,6 +70,7 @@ public class Storage {
 	
 	public static boolean
 	resetPassword(String email, String password) {
+		String source = Setup.connectionString;
 		boolean result = false;	
 		var sql =   " update users set password = sha2(?, 512)  " +
 					" where email = ?                           ";
@@ -85,6 +87,7 @@ public class Storage {
 	
 	public static int
 	changePassword(String email, String current, String password) {
+		String source = Setup.connectionString;
 		int result = 0;
 		var sql =   " update users set password = sha2(?, 512)    " +
 					" where email = ? and password = sha2(?, 512) ";
@@ -102,6 +105,7 @@ public class Storage {
 	
 	public static int
 	saveContactMessage(String topic, String detail, String email) {
+		String source = Setup.connectionString;
 		var sql   = " insert into messages(topic,detail,email,time) " +
 					" values(?, ?, ?, utc_timestamp())              ";
 		ArrayList<Integer> list = new ArrayList<>();
@@ -139,6 +143,7 @@ public class Storage {
 					', 512) or true; --  
 	*/
 	public static User findUser(String email, String password) {
+		String source = Setup.connectionString;
 		var query = " select * from users where       " +
 					" email = '" + email + "' and     " +
 					" password = sha2('" + password + "', 512)";

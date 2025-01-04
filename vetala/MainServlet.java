@@ -4,7 +4,8 @@
  * This servlet can be deployed from the deployment descriptor.
  *
  */
- 
+
+import server.Setup;
 import server.User;
 import server.Email;
 import server.EmailSender;
@@ -81,6 +82,10 @@ import jakarta.servlet.http.Part;
 
 
 public class MainServlet extends HttpServlet {
+
+	public MainServlet() {
+		Setup.reload();
+	}
 	
 	@Override
 	public void service(HttpServletRequest request,
@@ -372,10 +377,10 @@ public class MainServlet extends HttpServlet {
 			String activation = Tool.randomActivationCode();
 			session.setAttribute("activation-code", activation);
 			
-			if (EmailSender.emailEnabled) {
+			if (Setup.emailEnabled) {
 				new Email().sendActivationCode(email, activation);
 			}
-			if (EmailSender.emailEnabled == false) {
+			if (Setup.emailEnabled == false) {
 				session.setAttribute("code", activation);
 			}
 			
@@ -483,7 +488,7 @@ public class MainServlet extends HttpServlet {
 		User user = Storage.checkPassword(email, password);
 		session.setAttribute("user", user);
 		
-		if (EmailSender.emailEnabled) {
+		if (Setup.emailEnabled) {
 			Email e = new Email();
 			e.sendWelcome(email);
 		}
@@ -697,7 +702,7 @@ public class MainServlet extends HttpServlet {
 		session.setAttribute("activation-code", activation);
 		session.setAttribute("email", email);
 		
-		if (EmailSender.emailEnabled) {
+		if (Setup.emailEnabled) {
 			Email e = new Email();
 			e.sendResetCode(email, activation);
 		}
@@ -781,7 +786,7 @@ public class MainServlet extends HttpServlet {
 		
 		Storage.resetPassword(email, password);
 		
-		if (EmailSender.emailEnabled) {
+		if (Setup.emailEnabled) {
 			Email e = new Email();
 			e.sendResetConfirmation(email);
 		}
@@ -852,7 +857,7 @@ public class MainServlet extends HttpServlet {
 		}
 	
 		int record = Storage.saveContactMessage(topic, detail, email);
-		if (EmailSender.emailEnabled) {
+		if (Setup.emailEnabled) {
 			Email e = new Email();
 			e.sendContactSavedConfirmation(email);
 		}
