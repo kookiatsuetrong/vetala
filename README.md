@@ -245,10 +245,8 @@ V02: As a visitor,
 	including Facebook or Google.
 
 A01: As an administrator,
-	I want to configure connection string.
-	
-A02: As an administrator,
 	I want to enable/disable RMI handler.
+	
 ```
 
 
