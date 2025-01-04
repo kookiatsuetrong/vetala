@@ -17,6 +17,12 @@ create table users
 insert into users(email, password, first_name, last_name, type)
 	values('user@email.com', upper(sha2('User1234', 512)), 
 		'First', 'Last', 'administrator');
+		
+-- type of user
+-- unknown
+-- administrator
+-- staff
+-- user
 
 create table messages
 (

@@ -33,4 +33,12 @@ class ErrorMessage {
 	PASSWORD_RESET_SUCCESS     = "Your password has been reset";
 	public static String 
 	CONTACT_SAVE_SUCCESS       = "Your message has been received";
+	
+	public static String
+	PASSWORD_CHANGED           = "Your password has been changed";
+	public static String
+	PASSWORD_UNCHANGED         = "Your password has not been changed";
+	public static String
+	INCORRECT_CURRENT_PASSWORD = "The current password is not correct";
+	
 }

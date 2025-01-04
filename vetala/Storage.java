@@ -69,7 +69,7 @@ public class Storage {
 	
 	public static boolean
 	resetPassword(String email, String password) {
-		boolean result = false;
+		boolean result = false;	
 		var sql =   " update users set password = sha2(?, 512)  " +
 					" where email = ?                           ";
 		try {
@@ -78,6 +78,23 @@ public class Storage {
 			ps.setString(1, password);
 			ps.setString(2, email);
 			result = ps.execute();    // or ps.executeUpdate()
+			ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+	
+	public static int
+	changePassword(String email, String current, String password) {
+		int result = 0;
+		var sql =   " update users set password = sha2(?, 512)    " +
+					" where email = ? and password = sha2(?, 512) ";
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(sql);
+			ps.setString(1, password);
+			ps.setString(2, email);
+			ps.setString(3, current);
+			result = ps.executeUpdate();
 			ps.close(); cn.close();
 		} catch (Exception e) { }
 		return result;

@@ -64,6 +64,21 @@
 						current account.
 					</p>
 				</a>
+				<a class="block-menu" href="/user-password">
+					<svg width="24" height="24" 
+						viewBox="0 0 24 24" fill="none" stroke="white" 
+						stroke-width="2" stroke-linecap="round" 
+						stroke-linejoin="round">
+						<path d="M20.59 13.41l-7.17 7.17a2 
+								2 0 0 1-2.83 0L2 12V2h10l8.59 
+								8.59a2 2 0 0 1 0 2.82z" />
+						<line x1="7" y1="7" x2="7.01" y2="7" />
+					</svg>
+					<h3>Password</h3>
+					<p>
+						Change password for current account.
+					</p>
+				</a>
 				<a class="block-menu" href="/user-logout">
 					<svg width="24" height="24" 
 						viewBox="0 0 24 24" fill="none" stroke="white" 
@@ -77,37 +92,38 @@
 						Log out from current account.
 					</p>
 				</a>
-				<style>
-				.block-menu-container {
-					display: grid;
-					grid-template-columns: 1fr 1fr 1fr;
-					column-gap: 2rem;
-				}
-				.block-menu {
-					padding: 1rem;
-					border: none;
-					border-radius: .5rem;
-					margin-bottom: 2rem;
-					background: rgba(20%, 80%, 40%, 0.8);
-					background: var(--header-background);
-				}
-				.block-menu h3 {
-					font-weight: regular;
-					font-size: 2rem;
-					color: white;
-				}
-				.block-menu p {
-					color: white;
-					line-height: 1.5rem;
-					margin-top: .5rem;
-				}
-				.block-menu svg {
-					width: 4rem;
-					height: 4rem;
-					float: right;
-				}
-				</style>
 			</section>
+			
+			<style>
+			.block-menu-container {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				column-gap: 2rem;
+			}
+			.block-menu {
+				padding: 1rem;
+				border: none;
+				border-radius: .5rem;
+				margin-bottom: 2rem;
+				background: rgba(20%, 80%, 40%, 0.8);
+				background: var(--header-background);
+			}
+			.block-menu h3 {
+				font-weight: regular;
+				font-size: 2rem;
+				color: white;
+			}
+			.block-menu p {
+				color: white;
+				line-height: 1.5rem;
+				margin-top: .5rem;
+			}
+			.block-menu svg {
+				width: 4rem;
+				height: 4rem;
+				float: right;
+			}
+			</style>
 		</main>
 		
 		<%@include file="/WEB-INF/footer.jsp" %>

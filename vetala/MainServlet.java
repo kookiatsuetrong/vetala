@@ -164,6 +164,18 @@ public class MainServlet extends HttpServlet {
 				sendAsWeb(context, result);
 				return;
 			}
+			
+			if ( "GET /user-password".equals(pattern)) {
+				String result = (String)showPasswordPage(context);
+				sendAsWeb(context, result);
+				return;
+			}
+			
+			if ("POST /user-password".equals(pattern)) {
+				String result = (String)changePassword(context);
+				sendAsWeb(context, result);
+				return;
+			}
 
 			if ( "GET /user-logout".equals(pattern)) {
 				String result = (String)showLogOutPage(context);
@@ -545,6 +557,75 @@ public class MainServlet extends HttpServlet {
 			
 		// ask user to login before continue
 		return context.redirect("/user-check-email");
+	}
+	
+	
+	/*
+	*  Displays password management for current user
+	*
+	*  GET /user-password
+	*/
+	Object showPasswordPage(Context context) {
+		if (context.isLoggedIn()) {
+			return context.render("/WEB-INF/user-password.jsp");
+		}
+		return context.redirect("/user-check-email");
+	}
+	
+	/*
+	*  Changes the password for current user
+	*
+	*  POST /user-password
+	*/
+	Object changePassword(Context context) {
+		if (context.isLoggedIn() == false) {
+			return context.redirect("/user-check-email");
+		}
+		
+		String current  = context.getParameter("current");
+		String password = context.getParameter("password");
+		String confirm  = context.getParameter("confirm");
+		
+		if (password == null) password = "";
+		
+		HttpSession session = context.getSession(true);
+		
+		if (password.length() < 8) {
+			session.setAttribute("message", ErrorMessage.PASSWORD_TOO_SHORT);
+			return context.redirect("/user-password");
+		}
+		
+		if (password.equals(confirm) == false) {
+			session.setAttribute("message", 
+					ErrorMessage.INCORRECT_CONFIRM_PASSWORD);
+			return context.redirect("/user-password");
+		}
+		
+		if (password.matches(".*[0-9].*") == false) {
+			session.setAttribute("message", ErrorMessage.PASSWORD_NUMBER);
+			return context.redirect("/user-password");
+		}
+		
+		if (password.matches(".*[A-Z].*") == false) {
+			session.setAttribute("message", ErrorMessage.PASSWORD_UPPERCASE);
+			return context.redirect("/user-password");
+		}
+		
+		if (password.matches(".*[a-z].*") == false) {
+			session.setAttribute("message", ErrorMessage.PASSWORD_LOWERCASE);
+			return context.redirect("/user-password");
+		}
+		
+		User user = context.getCurrentUser();
+		int result = Storage.changePassword(user.email, current, password);
+		
+		if (result == 0) {
+			session.setAttribute("message", ErrorMessage.INCORRECT_CURRENT_PASSWORD);
+			return context.redirect("/user-password");
+		}
+
+		session.setAttribute("message", ErrorMessage.PASSWORD_CHANGED);
+		return context.redirect("/user-password");
 	}
 	
 	
