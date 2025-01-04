@@ -72,6 +72,8 @@ emailSecurity = TLSv1.2
 ```
 
 
+RMI Handler for non-stop Java application
+
 ```
 From HTTP Request:
 
