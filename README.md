@@ -138,14 +138,13 @@ class SimpleHandler extends UnicastRemoteObject implements Handler {
 Common web application endpoints
 
 ```
+For visitor:
+
  GET /user-check-email
 POST /user-check-email
 
  GET /user-register
 POST /user-register
-
- GET /user-profile
- GET /user-logout
 
  GET /user-login
 POST /user-login
@@ -162,6 +161,20 @@ POST /contact
  GET /contact-final
 
  GET /error
+
+
+For user:
+
+ GET /user-profile
+ GET /user-password
+POST /user-password
+ GET /user-logout
+
+
+For administrator
+
+ GET /user-management
+
 
 ```
 
