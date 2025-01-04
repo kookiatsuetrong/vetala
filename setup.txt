@@ -1,0 +1,1 @@
+connectionString = jdbc:mysql://127.0.0.1/sample?user=me&password=password
