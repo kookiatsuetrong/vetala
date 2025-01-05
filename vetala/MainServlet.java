@@ -110,17 +110,7 @@ public class MainServlet extends HttpServlet {
 			
 		} catch (Exception e) { }
 		
-		// Case 1 - 4
-		internalService(request, response);
-	}
-	
-	void internalService(HttpServletRequest request,
-						HttpServletResponse response) {
 		System.out.println("The Internal Service");
-		
-		String verb = request.getMethod();
-		String uri  = request.getRequestURI();
-		String pattern = verb + " " + uri;
 		
 		// Case 1: Internal Web Application
 		Context context = new Context();
