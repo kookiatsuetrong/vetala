@@ -152,9 +152,9 @@ public class MainServlet extends HttpServlet {
 		// Case 2: Static File
 		var sc = getServletContext();
 		try {
-			var path    = sc.getRealPath(uri);
-			var file    = new File(path);
-			var found   = file.exists();
+			var path  = sc.getRealPath(uri);
+			var file  = new File(path);
+			var found = file.exists();
 
 			if (found) {
 				System.out.println("Static file " + file);
