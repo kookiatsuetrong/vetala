@@ -1,8 +1,6 @@
 Avoid using "else".
 
 ```java
-Avoid using "else"
-
 // Code 1: Avoid using "else"
 if (passed) {
 
