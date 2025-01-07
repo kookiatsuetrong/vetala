@@ -3,14 +3,14 @@ Avoid using "else".
 ```java
 Avoid using "else"
 
-// Code 1:
+// Code 1: Avoid using "else"
 if (passed) {
 
 } else {
 
 }
 
-// Code 2:
+// Code 2: Use double "if" instead
 if (passed == true) { }
 if (passed == false) { }
 
@@ -22,13 +22,13 @@ if (passed == false) { }
 
 Avoid using "else if".
 ```java
-// Code 1:
+// Code 1: Avoid using "else if"
 if ( ... ) { }
 else if ( ... ) { }
 else if ( ... ) { }
 else { }
 
-// Code 2:
+// Code 2: Use fallback condition (or temporary result) instead
 String f(double value) {
 	if ( ... ) return "";
 	if ( ... ) return "";
