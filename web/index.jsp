@@ -231,7 +231,7 @@
 					background: rgba(90%, 90%, 90%, .5);
 					padding: 1rem;
 					border-radius: .75rem;
-					margin-bottom: 2rem;
+					margin-bottom: 1rem;
 				}
 				main .inner-card {
 					background: #888;
