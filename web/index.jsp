@@ -10,8 +10,8 @@
 			<section class="container navigator">
 				<h3>Sample Logo</h3>
 			</section>
-			
-			<section class="container banner">
+						
+			<section class="banner">
 			
 			
 			</section>
@@ -20,17 +20,21 @@
 				.container.navigator h3 {
 					margin: 1rem 0;
 				}
-				.container.banner {
-					min-height: 40rem;
-					background: rgba(90%, 90%, 90%, .5);
-					border-radius: 1rem;
+				.banner {
+					min-height: 30rem;
+					background: rgba(0%, 0%, 0%, .5);
+				}
+				body {
+					background: #f8fdff;
+					background-image: url(background-blue.png);
+					background-size: 100% auto;
 				}
 			</style>
 		</header>
 		<main>
 			<section class="container">
 				<h1>Sample <b>Awesome Feature</b>
-					<br/>of Your Products</h1>
+					<br/>of Our Products</h1>
 			</section>
 			
 			<section class="container trio">
@@ -58,23 +62,72 @@
 			</section>
 			
 			<section class="container">
-				<h1>Write <b>More Feature</b>
-					<br/>of Your Products</h1>
+				<h1>See <b>More Detail</b>
+					<br/>about Our Products</h1>
 			</section>
 			
+			<section class="container duo">
+				<section class="panel">
+					<h3>Create Account</h3>
+					<p> The quick brown fox jumps
+						over a lazy dog.
+						The quick brown fox jumps
+						over a lazy dog.
+						The quick brown fox jumps
+						over a lazy dog.
+					</p>
+					<p>
+						<a class="button" href="">Create Account</a>
+					</p>
+				</section>
+			
+				<section class="panel">
+					<h3>Log In</h3>
+					<p>The quick brown fox jumps
+						over a lazy dog.</p>
+					<p>
+						<a class="button" href="">Log In</a>
+					</p>
+				</section>
+			</section>
+			<style>
+				.duo {
+					display: grid;
+				}
+				@media (min-width:768px) {
+					.duo {
+						grid-template-columns: 1fr 1fr;
+						column-gap: 2rem;
+					}
+				}
+				.panel {
+					background: rgba(0, 0, 0, .1);
+					margin-bottom: 2rem;
+					border-radius: 1rem;
+					display: grid;
+					grid-template-rows: 2rem 1fr 2rem;
+					padding: 1rem 1rem 1.90rem 1rem;
+				}
+				.panel .button {
+					border-color: steelblue;
+					background: steelblue;
+				}
+			</style>
+			
+			<br/>
 			<section class="statistics">
 				<section class="container trio">
 					<section>
-						<h1>100%</h1>
-						<h3>Sample Message</h3>
+						<h1>24/7</h1>
+						<h3>Operation Hours</h3>
 					</section>
 					<section>
 						<h1>100%</h1>
-						<h3>Sample Message</h3>
+						<h3>Client Satisfaction</h3>
 					</section>
 					<section>
-						<h1>100%</h1>
-						<h3>Sample Message</h3>
+						<h1>850+</h1>
+						<h3>Clients World-Wide</h3>
 					</section>
 				</section>
 			</section>
@@ -91,7 +144,7 @@
 			</style>
 			
 			<section class="container">
-				<h1>Discover <b>More Feature</b>
+				<h1>Discover <b>More Features</b>
 					<br/>of Our Products</h1>
 			</section>
 			
@@ -193,6 +246,9 @@
 				}
 				main .color-3 {
 					background: slategray;
+				}
+				.feature h1 {
+					font-weight: bolder;
 				}
 			</style>
 		</main>
