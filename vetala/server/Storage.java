@@ -1,9 +1,10 @@
+package server;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import server.User;
-import server.Setup;
+
 
 public class Storage {
 

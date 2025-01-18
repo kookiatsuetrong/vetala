@@ -1,3 +1,6 @@
+/**
+ * This is an example of external handler
+ */
 import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.RemoteException;

@@ -1,3 +1,9 @@
+/**
+ * The combination class for 
+ * 1. HttpServletRequest
+ * 2. HttpServletResponse
+ * 
+ */
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

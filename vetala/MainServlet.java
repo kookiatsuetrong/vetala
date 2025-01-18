@@ -1,4 +1,4 @@
-/*
+/**
  * The Main Servlet of Vetala engine
  *
  * This servlet can be deployed from the deployment descriptor.

@@ -1,3 +1,7 @@
+/**
+ * The external Vetala handler
+ * 
+ */
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Map;
