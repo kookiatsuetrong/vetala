@@ -18,7 +18,8 @@ Directory structures
 ```
 vetala
 '
-'                                                             DEPLOYABLE PART
+'                                     ----------- DELIVERABLE PART -----------
+'
 '
 '-- servlet.xml                  Java Web Deployment Descriptor
 '-- web                          Ordinary Java Web Application
@@ -48,7 +49,7 @@ vetala
 '   '-- server
 '       '-- zzz.class
 '
-'                                                           UNDEPLOYABLE PART
+'                                     --------- NON-DELIVERABLE PART ---------
 '
 '-- vetala                       Internal Engine
     '-- Vetala.java              Embedded Tomcat
