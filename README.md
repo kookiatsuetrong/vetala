@@ -27,32 +27,40 @@ vetala
 '   '
 '   '-- WEB-INF                  View (Access from Servlet)
 '       '-- user-register.jsp
+'       '-- user-profile.jsp
+'       '
+'       '-- module-1             Additional Module
+'           '-- module.txt
+'           '-- index.jsp
 '
 '-- make.sh                      Make for Unix
 '-- make.bat                     Make for Windows
 '-- schema.sql                   Database Schema
 '
-'-- vetala                       Internal Engine
-'   '-- Vetala.java              Embedded Tomcat
-'   '-- MainServlet.java         The Main Servlet
-'   '-- Context.java             Java Request / Response
-'   '-- ErrorMessage.java
-'   '-- Storage.java             Database Access Layer
-'   '-- Tool.java
-'   '
-'   '-- server                   Shared Code with View
-'   '   '-- User.java
-'   '   '-- Email.java
-'   '   '-- EmailSender.java
-'   '
-'   '-- Handler.java             Template for RMI Handler
-'   '-- SimpleHandler.java
-'
 '-- runtime
-    '-- embedded-tomcat.jar
-    '-- jdbc.jar
-    '-- xxx.class
-    '-- yyy.class
+'   '-- embedded-tomcat.jar
+'   '-- jdbc.jar
+'   '-- xxx.class
+'   '-- yyy.class
+'   '-- server
+'       '-- zzz.class
+'
+'-- vetala                       Internal Engine
+    '-- Vetala.java              Embedded Tomcat
+    '-- MainServlet.java         The Main Servlet
+    '-- Context.java             Java Request / Response
+    '-- ErrorMessage.java
+    '-- Storage.java             Database Access Layer
+    '-- Tool.java
+    '
+    '-- server                   Shared Code with JSP
+    '   '-- User.java
+    '   '-- Email.java
+    '   '-- EmailSender.java
+    '
+    '-- Handler.java             Template for RMI Handler
+    '-- SimpleHandler.java
+
 ```
 
 Common configuration (setup.txt) file.
@@ -69,6 +77,35 @@ emailServer   = smtp.server.com
 emailSender   = The System Administrator
 emailPort     = 587
 emailSecurity = TLSv1.2
+```
+
+Creating Module
+
+```
+'
+'-- vetala
+    '
+    '-- web
+        '-- index.jsp
+        '
+        '-- WEB-INF
+            '-- whatever.jsp
+            '-- user-profile.jsp -------------.
+            '                                 '
+            '-- classes                       '
+            '   '-- whatever                  '
+            '-- lib                           '
+            '   '-- driver.jar                '
+            '                                 '
+            '-- module-1                  <---'
+                '-- module.txt    (Mandatory)
+                '-- index.jsp     (Mandatory)
+                '-- another.jsp   (Optional)
+
+Type of module:
+- administrator
+- staff
+- user
 ```
 
 
@@ -267,6 +304,9 @@ A01: As an administrator,
 
 A02: As an administrator,
 	I want to force the system to reload configuration.
+
+A03: As a developer, 
+        I want to write a module.
 
 ```
 
