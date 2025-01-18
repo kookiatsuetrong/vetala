@@ -22,23 +22,30 @@ vetala
 '
 '
 '-- servlet.xml                  Java Web Deployment Descriptor
-'-- web                          Ordinary Java Web Application
+'-- web                          Java Web Application
 '   '-- index.jsp                JavaServer Pages
-'   '-- normalize.css
+'   '-- normalize.css            Public Files
 '   '-- main.css
 '   '-- photo.jpg
 '   '-- favicon.ico
 '   '
 '   '-- WEB-INF                  View (Access from Servlet)
-'       '-- user-register.jsp
-'       '-- user-profile.jsp
-'       '
-'       '-- module-1             Additional Module
-'           '-- module.txt
-'           '-- index.jsp
+'   '   '-- user-register.jsp
+'   '   '-- user-profile.jsp
+'   '   '
+'   '   '-- module-1             Additional Module
+'   '       '-- module.txt
+'   '       '-- index.jsp
+'   '-- META-INF
+'   '   '-- module-1             Additional Module
+'   '       '-- module.txt
+'   '       '-- index.jsp
+'   '-- module-2
+'       '-- module.txt
+'       '-- index.jsp
 '
-'-- make.sh                      Make for Unix
-'-- make.bat                     Make for Windows
+'-- make.sh                      Make file for Unix
+'-- make.bat                     Make file for Windows
 '-- schema.sql                   Database Schema
 '
 '-- runtime

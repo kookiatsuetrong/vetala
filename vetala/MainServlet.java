@@ -1,7 +1,7 @@
 /**
  * The Main Servlet of Vetala engine
  *
- * This servlet can be deployed from the deployment descriptor.
+ * This servlet can be deployed to any kind of Java web server.
  *
  */
 
@@ -80,11 +80,10 @@ import jakarta.servlet.http.Part;
 */
 
 
-
 public class MainServlet extends HttpServlet {
 
-	Map<String, ContextHandler> map = new TreeMap<>();		
-		
+	Map<String, ContextHandler> map = new TreeMap<>();
+
 	public MainServlet() {
 		Setup.reload();
 		
@@ -118,9 +117,11 @@ public class MainServlet extends HttpServlet {
 		String verb = request.getMethod();
 		String uri  = request.getRequestURI();
 		String pattern = verb + " " + uri;
+		
 		System.out.println(pattern);
 		
-		// Case 0: External
+		// Case 1: External
+		//         This case must be started with "/external"
 		try {
 			String starting = "";
 			String[] items = uri.trim().split("/");
@@ -137,7 +138,8 @@ public class MainServlet extends HttpServlet {
 		
 		System.out.println("The Internal Service");
 		
-		// Case 1: Internal Web Application
+		// Case 2: Internal Web Application
+		//         This case must be in the URL mapping pattern from constructor
 		Context context = new Context();
 		context.request = request;
 		context.response = response;
@@ -145,21 +147,6 @@ public class MainServlet extends HttpServlet {
 			ContextHandler handler = map.get(pattern);
 			if (handler != null) {
 				handler.handle(context);
-				return;
-			}
-		} catch (Exception e) { }
-		
-		// Case 2: Static File
-		var sc = getServletContext();
-		try {
-			var path  = sc.getRealPath(uri);
-			var file  = new File(path);
-			var found = file.exists();
-
-			if (found) {
-				System.out.println("Static file " + file);
-				var rd = sc.getNamedDispatcher("default");
-				rd.forward(request, response);
 				return;
 			}
 		} catch (Exception e) { }
@@ -173,7 +160,26 @@ public class MainServlet extends HttpServlet {
 			}
 		} catch (Exception e) { }
 		
-		// Case 4: Not Found
+		// Case 4: Static File
+		//         This case must be a file in the directory 
+		var sc = getServletContext();
+		try {
+			var path  = sc.getRealPath(uri);
+			var file  = new File(path);
+			var found = file.exists();
+
+			if (found) {
+				System.out.println("Static file " + file);
+				var rd = sc.getNamedDispatcher("default");
+				rd.forward(request, response);
+				return;
+			}
+		} catch (Exception e) { }
+
+		// Case 5: Module
+		//         This case must be started with "/module"
+		
+		// Case 6: Not Found
 		context.redirect("/error");
 	}
 	
