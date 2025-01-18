@@ -18,7 +18,7 @@ Directory structures
 ```
 vetala
 '
-'                                     ----------- DELIVERABLE PART -----------
+'                                     -------- EXECUTABLE ASSET -------- 
 '
 '
 '-- servlet.xml                  Java Web Deployment Descriptor
@@ -56,17 +56,17 @@ vetala
 '   '-- server
 '       '-- zzz.class
 '
-'                                     --------- NON-DELIVERABLE PART ---------
+'                                     -------- SOURCE CODE ASSET -------
 '
 '-- vetala                       Internal Engine
     '-- Vetala.java              Embedded Tomcat
     '-- MainServlet.java         The Main Servlet
-    '-- Context.java             Java Request / Response
+    '-- Context.java             Combination of Request and Response 
     '-- ErrorMessage.java
-    '-- Storage.java             Database Access Layer
     '-- Tool.java
     '
     '-- server                   Shared Code with JSP
+    '   '-- Storage.java         Database Access Layer
     '   '-- User.java
     '   '-- Email.java
     '   '-- EmailSender.java
