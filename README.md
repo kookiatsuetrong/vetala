@@ -17,6 +17,9 @@ And open web browser to http://localhost:12345
 Directory structures
 ```
 vetala
+'
+'                                                             DEPLOYABLE PART
+'
 '-- servlet.xml                  Java Web Deployment Descriptor
 '-- web                          Ordinary Java Web Application
 '   '-- index.jsp                JavaServer Pages
@@ -44,6 +47,8 @@ vetala
 '   '-- yyy.class
 '   '-- server
 '       '-- zzz.class
+'
+'                                                           UNDEPLOYABLE PART
 '
 '-- vetala                       Internal Engine
     '-- Vetala.java              Embedded Tomcat
