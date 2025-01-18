@@ -3,6 +3,7 @@
  *
  * Usage:
  *
+ * java Vetala
  * java Vetala --home web --port 7300
  *
  */
