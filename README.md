@@ -1,4 +1,4 @@
-## Vetala
+## The Vetala Project
 
 Vetala is a non-stop web server for Java application.
 
