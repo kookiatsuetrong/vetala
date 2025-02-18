@@ -127,7 +127,7 @@ public class Storage {
 			ps.setString(3, email);
 			ps.execute();
 			ResultSet rs = ps.getGeneratedKeys();
-			while (rs.next()) {
+			if (rs.next()) {
 				list.add( (int)rs.getLong(1) );
 			}
 			rs.close(); ps.close(); cn.close();
