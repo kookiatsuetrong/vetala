@@ -152,6 +152,7 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) { }
 		
 		// Case 3: JSP File
+		var sc = getServletContext();
 		try {
 			if (uri.endsWith(".jsp")) {
 				var rd = sc.getRequestDispatcher(uri);
@@ -162,7 +163,6 @@ public class MainServlet extends HttpServlet {
 		
 		// Case 4: Static File
 		//         This case must be a file in the directory 
-		var sc = getServletContext();
 		try {
 			var path  = sc.getRealPath(uri);
 			var file  = new File(path);
