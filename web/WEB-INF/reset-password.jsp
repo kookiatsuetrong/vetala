@@ -72,7 +72,7 @@
 					margin-top: .4rem;
 				}
 				img {
-					background: #bbb;
+					background: rgba(240,240,240,.8);
 					padding: .65rem;
 					margin-top: .005rem;
 					border-radius: .35rem;
