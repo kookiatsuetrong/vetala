@@ -1,25 +1,25 @@
 class ErrorMessage {
 
 	public static String 
-	INCORRECT_PHOTO_CODE      = "Incorrect photo code";
+	INCORRECT_PHOTO_CODE       = "Incorrect photo code";
 	public static String 
-	INCORRECT_ACTIVATION_CODE = "Incorrect activation code";	
+	INCORRECT_ACTIVATION_CODE  = "Incorrect activation code";	
 	public static String 
-	INCORRECT_RESET_CODE      = "Incorrect reset code";
+	INCORRECT_RESET_CODE       = "Incorrect reset code";
 	
 	public static String 
-	INVALID_FIRST_NAME        = "Invalid first name";
+	INVALID_FIRST_NAME         = "Invalid first name";
 	public static String 
-	INVALID_LAST_NAME         = "Invalid last name";
+	INVALID_LAST_NAME          = "Invalid last name";
 	
 	public static String 
-	PASSWORD_TOO_SHORT        = "Password must have 8 characters or more";
+	PASSWORD_TOO_SHORT         = "Password must have 8 characters or more";
 	public static String 
-	PASSWORD_NUMBER           = "Password must have a number";
+	PASSWORD_NUMBER            = "Password must have a number";
 	public static String 
-	PASSWORD_UPPERCASE        = "Password must have an uppercase";
+	PASSWORD_UPPERCASE         = "Password must have an uppercase";
 	public static String 
-	PASSWORD_LOWERCASE        = "Password must have a lowercase";
+	PASSWORD_LOWERCASE         = "Password must have a lowercase";
 	
 	public static String 
 	INCORRECT_PASSWORD         = "Incorrect password";

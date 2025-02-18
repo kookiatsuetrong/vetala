@@ -6,24 +6,15 @@
  */
 
 import server.Setup;
-import server.User;
-import server.Email;
-import server.EmailSender;
 
 import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
 import java.rmi.Naming;
-import java.io.PrintWriter;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
 
 /*
 	Common Operations:
@@ -139,7 +130,8 @@ public class MainServlet extends HttpServlet {
 		System.out.println("The Internal Service");
 		
 		// Case 2: Internal Web Application
-		//         This case must be in the URL mapping pattern from constructor
+		//         This case must be in the URL mapping pattern 
+		//         from the this servlet's constructor
 		Context context = new Context();
 		context.request = request;
 		context.response = response;
@@ -152,6 +144,7 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) { }
 		
 		// Case 3: JSP File
+		//         This case can ben any kind of JSP file
 		var sc = getServletContext();
 		try {
 			if (uri.endsWith(".jsp")) {
@@ -162,7 +155,7 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) { }
 		
 		// Case 4: Static File
-		//         This case must be a file in the directory 
+		//         This case must be a file in the home directory 
 		try {
 			var path  = sc.getRealPath(uri);
 			var file  = new File(path);

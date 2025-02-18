@@ -1,21 +1,9 @@
-import java.io.File;
-import java.util.Map;
-import java.util.TreeMap;
-
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
 
 import server.Storage;
 import server.Setup;
 import server.User;
 import server.Email;
-import server.EmailSender;
 
 public class UserHandler {
 
