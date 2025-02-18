@@ -104,11 +104,11 @@ public class MainServlet extends HttpServlet {
 		map.put("POST /contact",          UserHandler::saveContactDetail);
 		map.put( "GET /contact-final",    UserHandler::showContactFinalPage);
 		
-		map.put( "GET /reset-password",       UserHandler::showResetPasswordPage);
-		map.put("POST /reset-password",       UserHandler::checkResetPassword);
-		map.put( "GET /reset-password-code",  UserHandler::showResetPasswordCode);
-		map.put("POST /reset-password-code",  UserHandler::checkResetPasswordCode);
-		map.put( "GET /reset-password-final", UserHandler::showResetPasswordFinal);
+		map.put( "GET /reset-password",       UserHandler::showResetPage);
+		map.put("POST /reset-password",       UserHandler::checkReset);
+		map.put( "GET /reset-password-code",  UserHandler::showResetCode);
+		map.put("POST /reset-password-code",  UserHandler::checkResetCode);
+		map.put( "GET /reset-password-final", UserHandler::showResetFinal);
 	}
 	
 	@Override

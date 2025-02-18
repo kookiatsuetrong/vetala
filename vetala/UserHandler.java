@@ -344,7 +344,7 @@ public class UserHandler {
 	*
 	*  GET /reset-password
 	*/
-	static Object showResetPasswordPage(Context context) {
+	static Object showResetPage(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -361,7 +361,7 @@ public class UserHandler {
 	*
 	*  POST /reset-password
 	*/
-	static Object checkResetPassword(Context context) {
+	static Object checkReset(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -406,7 +406,7 @@ public class UserHandler {
 	*
 	*  GET /reset-password-code
 	*/
-	static Object showResetPasswordCode(Context context) {
+	static Object showResetCode(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -425,7 +425,7 @@ public class UserHandler {
 	*
 	*  POST /reset-password-code
 	*/
-	static Object checkResetPasswordCode(Context context) {
+	static Object checkResetCode(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
@@ -486,7 +486,7 @@ public class UserHandler {
 	*
 	*  GET /reset-password-final
 	*/
-	static Object showResetPasswordFinal(Context context) {
+	static Object showResetFinal(Context context) {
 		if (context.isLoggedIn()) {
 			return context.redirect("/user-profile");
 		}
