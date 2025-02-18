@@ -100,15 +100,15 @@ public class MainServlet extends HttpServlet {
 		
 		map.put( "GET /error",            UserHandler::showErrorPage);
 		
-		map.put( "GET /contact",          UserHandler::showContactPage);
-		map.put("POST /contact",          UserHandler::saveContactDetail);
-		map.put( "GET /contact-final",    UserHandler::showContactFinalPage);
+		map.put( "GET /contact",       ContactHandler::showPage);
+		map.put("POST /contact",       ContactHandler::saveDetail);
+		map.put( "GET /contact-final", ContactHandler::showFinal);
 		
-		map.put( "GET /reset-password",       UserHandler::showResetPage);
-		map.put("POST /reset-password",       UserHandler::checkReset);
-		map.put( "GET /reset-password-code",  UserHandler::showResetCode);
-		map.put("POST /reset-password-code",  UserHandler::checkResetCode);
-		map.put( "GET /reset-password-final", UserHandler::showResetFinal);
+		map.put( "GET /reset-password",       ResetHandler::showPage);
+		map.put("POST /reset-password",       ResetHandler::checkReset);
+		map.put( "GET /reset-password-code",  ResetHandler::askResetCode);
+		map.put("POST /reset-password-code",  ResetHandler::checkResetCode);
+		map.put( "GET /reset-password-final", ResetHandler::showFinal);
 	}
 	
 	@Override
@@ -201,6 +201,7 @@ public class MainServlet extends HttpServlet {
 		printMap(map);
 		
 		try {
+			// TODO:
 			// 2. Extract user detail
 			
 			// 3. Call the handler
@@ -267,7 +268,6 @@ ServletRequest.getRequestDispatcher(String s)
 
 
 /favicon.ico
-
 
 */
 
