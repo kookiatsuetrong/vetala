@@ -1,4 +1,4 @@
-<%@page import="server.EmailSender" %>
+<%@page import="server.Setup" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -33,7 +33,7 @@
 			session.removeAttribute("message");
 
 			String codeType = "number";
-			if (EmailSender.emailEnabled == false) {
+			if (Setup.emailEnabled == false) {
 				codeType = "hidden";
 			}
 			%>
@@ -54,7 +54,7 @@
 						/>
 					
 					
-					<% if (EmailSender.emailEnabled) { %>
+					<% if (Setup.emailEnabled) { %>
 					<p>
 						The activation code has been
 						sent to the above email.
