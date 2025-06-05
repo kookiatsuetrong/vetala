@@ -106,10 +106,10 @@
 						viewBox="0 0 24 24" fill="none" stroke="white" 
 						stroke-width="2" stroke-linecap="round" 
 						stroke-linejoin="round">
-						<path d="M5.52 19c.64-2.2 1.84-3 
-							3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
-						<circle cx="12" cy="10" r="3" />
-						<circle cx="12" cy="12" r="10" />
+						<rect  x="3"  y="3" width="7" height="7" />
+						<rect x="14"  y="3" width="7" height="7" />
+						<rect x="14" y="14" width="7" height="7" />
+						<rect  x="3" y="14" width="7" height="7" />
 					</svg>
 					<h3>Profile</h3>
 					<p>
