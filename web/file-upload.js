@@ -17,6 +17,10 @@ FileUpload.setText = function setText(message) {
 	p.innerText = FileUpload.text
 }
 
+FileUpload.setMultiple = function setMultiple(value) {
+	FileUpload.multiple = value
+}
+
 FileUpload.setStyle = function setStyle(style) {
 	for (var k in style) {
 		FileUpload[k] = style[k]
@@ -104,7 +108,7 @@ FileUpload.onDrop = function onDrop(event) {
 FileUpload.onClick = function onClick() {
 	var chooser = document.createElement("input")
 	chooser.type     = "file"
-	chooser.multiple = true
+	chooser.multiple = FileUpload.multiple
 	chooser.accept   = FileUpload.type
 	chooser.capture  = true
 	chooser.onchange = event => {
@@ -118,7 +122,7 @@ FileUpload.uploadFiles = function uploadFiles(files) {
 	var chooser = document.createElement("input")
 	chooser.name = "photo-" + random
 	chooser.type = "file"
-	chooser.multiple = true
+	chooser.multiple = FileUpload.multiple
 	// chooser.accept   = FileUpload.type
 	chooser.style.display = "none"
 	chooser.files = files

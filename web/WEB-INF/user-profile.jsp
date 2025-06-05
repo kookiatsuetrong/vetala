@@ -9,12 +9,65 @@
 	<body>
 		<header></header>
 		<main>
-			<section class="container">
+			<section class="container profile-top">
 				<%
 				User user = (User)session.getAttribute("user");
+				String photo = "/uploaded/empty-photo.png";
+				String userName = "";
+				String userEmail = "";
+				int userNumber = 0;
+				if (user == null) { }
+				if (user != null) {
+					userName   = user.firstName + " " + user.lastName;
+					userNumber = user.number;
+					userEmail  = user.email;
+					photo = "/uploaded/profile-" + userNumber + ".png";
+				}
 				%>
-				<p>User: <%= user == null ? "" : user.email %></p>				
+				<section>
+					<img class="profile" id="profile" />
+				</section>
+				
+				<section>
+					<b><%= userName %></b>
+					<br/>
+					<code><%= userEmail %></code>
+				</section>
 			</section>
+			
+			<style>
+				.profile-top {
+					display: grid;
+					grid-template-columns: 4rem 1fr;
+					column-gap: 2rem;
+				}
+				.profile-top code {
+					color: #888;
+				}
+				.profile {
+					max-width: 4rem;
+					border-radius: 3rem;
+					background: white;
+					border: .2rem solid var(--brand-color);
+					margin-bottom: 1rem;
+				}
+			</style>
+			
+			<script src="/file-upload.js"></script>
+			<script>
+				checkCurrentPhoto()
+				
+				async function checkCurrentPhoto() {
+					var response = await fetch("<%= photo %>")
+					var photo = "/uploaded/empty-photo.png"
+					if (response.status == 200) {
+						photo = "<%= photo %>"
+					}
+					var element = document.getElementById("profile")
+					element.setAttribute("src", photo)
+				}
+
+			</script>
 			
 			<section class="container block-menu-container">
 				<a class="block-menu" href="/">
@@ -64,6 +117,23 @@
 						current account.
 					</p>
 				</a>
+				
+				<a class="block-menu" href="/user-photo">
+					<svg width="24" height="24" 
+						viewBox="0 0 24 24" fill="none" stroke="white" 
+						stroke-width="2" stroke-linecap="round" 
+						stroke-linejoin="round">
+						<path d="M5.52 19c.64-2.2 1.84-3 
+							3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
+						<circle cx="12" cy="10" r="3" />
+						<circle cx="12" cy="12" r="10" />
+					</svg>
+					<h3>Photo</h3>
+					<p>
+						Change the profile photo.
+					</p>
+				</a>
+				
 				<a class="block-menu" href="/user-password">
 					<svg width="24" height="24" 
 						viewBox="0 0 24 24" fill="none" stroke="white" 

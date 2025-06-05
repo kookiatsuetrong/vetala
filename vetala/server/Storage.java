@@ -20,6 +20,7 @@ public class Storage {
 			var rs = ps.executeQuery();
 			if (rs.next()) {
 				u = new User();
+				u.number    = rs.getInt("number");
 				u.email     = rs.getString("email");
 				u.firstName = rs.getString("first_name");
 				u.lastName  = rs.getString("last_name");
@@ -45,6 +46,7 @@ public class Storage {
 			var rs = ps.executeQuery();
 			if (rs.next()) {
 				u = new User();
+				u.number    = rs.getInt("number");
 				u.email     = rs.getString("email");
 				u.firstName = rs.getString("first_name");
 				u.lastName  = rs.getString("last_name");
@@ -140,7 +142,7 @@ public class Storage {
 	}
 	
 	/*
-		WARNING: This method can be attacked by sQL Injection
+		WARNING: This method can be attacked by SQL Injection
 		Try to log in by this password:
 		select * from user where
 		email = 'x' and password = sha2('y', 512)

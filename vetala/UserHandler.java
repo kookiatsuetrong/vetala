@@ -1,3 +1,6 @@
+import java.io.File;
+
+import jakarta.servlet.http.Part;
 import jakarta.servlet.http.HttpSession;
 
 import server.Storage;
@@ -184,9 +187,10 @@ public class UserHandler {
 	*  GET /error
 	*/
 	static Object showErrorPage(Context context) {
+		context.response.setStatus(404);
+		
 		return context.render("/WEB-INF/error.jsp");
 	}
-
 
 	/*
 	*  Displays the log in page
@@ -326,6 +330,56 @@ public class UserHandler {
 		}
 		return context.render("/WEB-INF/user-logout.jsp");
 	}
-
+	
+	/*
+	*  Displays user photo for current user
+	*
+	*  GET /user-photo
+	*/
+	static Object showUserPhotoPage(Context context) {
+		if (context.isLoggedIn()) {
+			return context.render("/WEB-INF/user-photo.jsp");
+		}
+		return context.redirect("/user-check-email");
+	}
+	
+	/*
+	*  Changes user photo for current user
+	*
+	*  POST /user-photo
+	*/
+	static Object changeUserPhoto(Context context) {
+		if (context.isLoggedIn()) {
+			String path = context.request.getServletContext().getRealPath("");
+			path += File.separator + "uploaded";
+			
+			HttpSession session = context.getSession(true);
+			User current = (User)session.getAttribute("user");
+			
+			// TODO: Change to square photo
+			// TODO: Change JPG to PNG format
+			// TODO: Change Photo to about 320*320
+			try {
+				for (Part part : context.request.getParts()) {
+					String file = path + File.separator + 
+									"profile-" + current.number;
+					
+					String type = part.getContentType();
+					switch (type) {
+						case "image/png"  -> file += ".png";
+						case "image/jpg"  -> file += ".jpg";
+						case "image/jpeg" -> file += ".jpg";
+					}
+					System.out.println("File Name: " + file);
+					part.write(file);
+				}
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			
+			return context.redirect("/user-photo");
+		}
+		return context.redirect("/user-check-email");
+	}
 }
 

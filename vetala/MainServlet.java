@@ -5,6 +5,7 @@
  *
  */
 
+import jakarta.servlet.annotation.MultipartConfig;
 import server.Setup;
 
 import java.io.File;
@@ -70,7 +71,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 */
 
-
+@MultipartConfig
 public class MainServlet extends HttpServlet {
 
 	Map<String, ContextHandler> map = new TreeMap<>();
@@ -87,6 +88,8 @@ public class MainServlet extends HttpServlet {
 		map.put( "GET /user-profile",     UserHandler::showProfilePage);
 		map.put( "GET /user-password",    UserHandler::showPasswordPage);
 		map.put("POST /user-password",    UserHandler::changePassword);
+		map.put( "GET /user-photo",       UserHandler::showUserPhotoPage);
+		map.put("POST /user-photo",       UserHandler::changeUserPhoto);
 		map.put( "GET /user-logout",      UserHandler::showLogOutPage);
 		
 		map.put( "GET /error",            UserHandler::showErrorPage);
