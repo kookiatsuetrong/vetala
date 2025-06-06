@@ -3,3 +3,4 @@ working
 setup.txt
 runtime/*.class
 runtime/server/*.class
+/web/uploaded
