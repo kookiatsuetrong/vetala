@@ -49,7 +49,7 @@ FileUpload.create = function setup(element) {
 	dropArea.style.background    = FileUpload.background
 	dropArea.style.border        = FileUpload.border
 	dropArea.style.borderRadius  = "0.35rem"
-	dropArea.style.transition    = "border .1s linear"
+	// dropArea.style.transition = "border .1s linear"
 	dropArea.style.textAlign     = "center"
 	
 	dropArea.style.borderColor = FileUpload.borderColor

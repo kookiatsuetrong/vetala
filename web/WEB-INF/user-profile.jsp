@@ -45,7 +45,8 @@
 					color: #888;
 				}
 				.profile {
-					max-width: 4rem;
+					width: 4rem;
+					height: 4rem;
 					border-radius: 3rem;
 					background: white;
 					border: .2rem solid var(--brand-color);
@@ -233,8 +234,20 @@
 			<style>
 			.block-menu-container {
 				display: grid;
-				grid-template-columns: 1fr 1fr 1fr;
-				column-gap: 2rem;
+				grid-template-columns: 1fr;
+			}
+			
+			@media (min-width: 512px) {
+				.block-menu-container {
+					grid-template-columns: 1fr 1fr;
+					column-gap: 2rem;
+				}
+			}
+			
+			@media (min-width: 768px) {
+				.block-menu-container {
+					grid-template-columns: 1fr 1fr 1fr;
+				}
 			}
 			.block-menu {
 				padding: 1rem;

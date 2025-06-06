@@ -38,8 +38,15 @@
 				.user-form {
 					margin: 0;
 				}
+				.file-upload {
+					height: 3rem;
+					border-style: dashed;
+					border-width: .15rem;
+					display: block;
+				}
 				.profile {
-					max-width: 8rem;
+					width: 8rem;
+					height: 8rem;
 					border-radius: 6rem;
 					background: white;
 					border: .2rem solid var(--brand-color);
