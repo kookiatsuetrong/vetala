@@ -373,7 +373,6 @@ public class UserHandler {
 						case "image/jpg"  -> temporaryFile += ".jpg";
 						case "image/jpeg" -> temporaryFile += ".jpg";
 					}
-					System.out.println("Temporary File: " + temporaryFile);
 					part.write(temporaryFile);
 				}
 				
@@ -404,8 +403,9 @@ public class UserHandler {
 				var output = new FileOutputStream(photoFile);
 				ImageIO.write(photo, "PNG", output);
 				
-				// TODO: remove the temporary file
-				
+				// Remove the temporary file
+				File f = new File(temporaryFile);
+				f.delete();
 			} catch (Exception e) {
 				System.out.println(e);
 			}

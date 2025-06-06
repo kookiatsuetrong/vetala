@@ -1,4 +1,4 @@
-<%@page import="server.Setup" %>
+<%@page pageEncoding="UTF8" import="server.Setup" %>
 <!DOCTYPE html>
 <html>
 	<head>

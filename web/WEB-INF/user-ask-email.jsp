@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@page pageEncoding="UTF8" %><!DOCTYPE html>
 <html>
 	<head>
 		<title>Register or Log In</title>

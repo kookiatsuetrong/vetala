@@ -1,4 +1,4 @@
-<%@page import="server.User"%><!DOCTYPE html>
+<%@page pageEncoding="UTF8" import="server.User"%><!DOCTYPE html>
 <html>
 	<head>
 		<title>Change Password</title>

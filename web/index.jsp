@@ -1,4 +1,4 @@
-<!DOCTYPE html><%@page pageEncoding="UTF8" %>
+<%@page pageEncoding="UTF8" %><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />

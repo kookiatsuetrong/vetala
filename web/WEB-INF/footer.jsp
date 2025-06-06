@@ -1,4 +1,4 @@
-<%@page import="server.User" %>
+<%@page pageEncoding="UTF8" import="server.User" %>
 <%
 User footerUser = (User)session.getAttribute("user");
 %>
