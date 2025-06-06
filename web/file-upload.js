@@ -3,7 +3,7 @@ var FileUpload = {
 	text: "File Upload",
 	multiple: true,
 	border: ".15rem dashed #888",
-	background: "#ddd"
+	background: "rgba(92%, 92%, 92%, .8)"
 }
 
 FileUpload.setType = function setType(mime) {

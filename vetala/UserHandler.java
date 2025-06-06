@@ -1,7 +1,11 @@
 import java.io.File;
-
+import javax.imageio.ImageIO;
 import jakarta.servlet.http.Part;
 import jakarta.servlet.http.HttpSession;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 import server.Storage;
 import server.Setup;
@@ -355,30 +359,60 @@ public class UserHandler {
 			
 			HttpSession session = context.getSession(true);
 			User current = (User)session.getAttribute("user");
+
+			String temporaryFile = path + 
+									File.separator + 
+									"temporary-" + 
+									current.number;
 			
-			// TODO: Change to square photo
-			// TODO: Change JPG to PNG format
-			// TODO: Change Photo to about 320*320
 			try {
 				for (Part part : context.request.getParts()) {
-					String file = path + File.separator + 
-									"profile-" + current.number;
-					
 					String type = part.getContentType();
 					switch (type) {
-						case "image/png"  -> file += ".png";
-						case "image/jpg"  -> file += ".jpg";
-						case "image/jpeg" -> file += ".jpg";
+						case "image/png"  -> temporaryFile += ".png";
+						case "image/jpg"  -> temporaryFile += ".jpg";
+						case "image/jpeg" -> temporaryFile += ".jpg";
 					}
-					System.out.println("File Name: " + file);
-					part.write(file);
+					System.out.println("Temporary File: " + temporaryFile);
+					part.write(temporaryFile);
 				}
+				
+				var input = new FileInputStream(temporaryFile);
+				var image = ImageIO.read(input);
+				
+				int width = image.getWidth();
+				int height = image.getHeight();
+				int square = width < height ? width : height;
+				
+				// Create a square photo
+				var squareImage = image.getSubimage(0, 0, square, square);
+				
+				int size = 360;
+				var photo = new BufferedImage(size, size,
+										BufferedImage.TYPE_INT_ARGB);
+
+				// To save space, change to the maximum size
+				Graphics2D g = photo.createGraphics();
+				g.drawImage(squareImage, 0, 0, size, size, null);
+				g.dispose();
+							
+				String photoFile = path + 
+						File.separator + 
+						"profile-" + 
+						current.number + ".png";
+				
+				var output = new FileOutputStream(photoFile);
+				ImageIO.write(photo, "PNG", output);
+				
+				// TODO: remove the temporary file
+				
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 			
 			return context.redirect("/user-photo");
 		}
+
 		return context.redirect("/user-check-email");
 	}
 }

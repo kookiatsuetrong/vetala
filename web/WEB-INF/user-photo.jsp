@@ -29,8 +29,9 @@
 					
 					<section class="file-upload">
 					</section>
+					
 					<br/>
-					<button>Change</button>
+					<button>Change Profile Photo</button>
 				</form>
 			</section>
 			<style>
@@ -49,7 +50,7 @@
 			<script src="/file-upload.js"></script>
 			<script>
 				FileUpload.create(".file-upload")
-				FileUpload.setText("Photo Upload")
+				FileUpload.setText("Choose Photo")
 				FileUpload.setType("image/*")
 				FileUpload.setMultiple(false)
 				
@@ -64,7 +65,6 @@
 					var element = document.getElementById("profile")
 					element.setAttribute("src", photo)
 				}
-
 			</script>
 			
 		</main>
