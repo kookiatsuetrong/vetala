@@ -5,6 +5,7 @@ import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.Session;
 import jakarta.websocket.OnMessage;
+import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(
@@ -13,15 +14,19 @@ import jakarta.websocket.server.ServerEndpoint;
 )
 public class Socket {
 	@OnOpen
-	public void handleOpen(Session session) {
+	public void handleOpen(Session session, 
+							EndpointConfig configure) {
 		try {
 			System.out.println(session);
+			System.out.println("Open Session Number  = " + session.getId());
+			String s = (String)configure.getUserProperties().get("CARD");
+			System.out.println("Open CARD  = " + s);
 		} catch (Exception e) { }
 	}
 	
 	@OnMessage
 	public void handleMessage(Session session,
-					String message) {
+								String message) {
 		try {
 			System.out.println(session.getId());
 			System.out.println("Client Message: " + message);
@@ -32,7 +37,7 @@ public class Socket {
 	@OnClose
 	public void handleClose(Session session) {
 		try {
-			
+			System.out.println("Close Session Number = " + session.getId());
 		} catch (Exception e) { }
 	}
 	
@@ -40,4 +45,5 @@ public class Socket {
 	public void handleError(Session session,
 		Throwable throwable) {
 	}
+	
 }

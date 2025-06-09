@@ -92,6 +92,49 @@ emailPort     = 587
 emailSecurity = TLSv1.2
 ```
 
+Deploying to other Java web server (Tomcat, Jetty, OpenLiberty, ...)
+
+```
+vetala
+'
+'                                     -------- EXECUTABLE ASSET -------- 
+'
+'
+'-- servlet.xml           ------------. Move to web.xml
+'-- web                               '
+'   '-- index.jsp                     '
+'   '-- normalize.css                 '
+'   '-- main.css                      '
+'   '-- photo.jpg                     '
+'   '-- favicon.ico                   '
+'   '                                 '
+'   '-- WEB-INF                       '
+'       '-- web.xml       <-----------'
+'       '
+'       '-- lib           <-----------.
+'       '   '-- jdbc.jar              '
+'       '   '-- xxx.class             '
+'       '                             '
+'       '-- user-register.jsp         '
+'       '-- user-profile.jsp          '
+'                                     '
+'                                     '
+'-- make.sh                           '
+'-- make.bat                          '
+'-- schema.sql                        '
+'                                     '
+'-- runtime               ------------' Move to lib
+'   '-- embedded-tomcat.jar
+'   '-- jdbc.jar
+'   '-- xxx.class
+'   '-- yyy.class
+'   '-- server
+'       '-- zzz.class
+'
+
+```
+
+
 Creating Module
 
 ```

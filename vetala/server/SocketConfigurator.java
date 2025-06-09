@@ -17,12 +17,22 @@ public class SocketConfigurator extends
 		
 		Map<String, List<String>> headers = 
 							request.getHeaders();
-		System.out.println(headers);
 		
-		System.out.println();
+		// System.out.println(headers);
+		String card = null;
 		List<String> cookies = headers.get("cookie");
 		for (String s : cookies) {
-			System.out.println(s);
+			if (s.startsWith("CARD")) {
+				String[] tokens = s.split("=");
+				if (tokens.length == 2) {
+					card = tokens[1];
+				}
+			}
+		}
+		
+		if (card == null) { }
+		if (card != null) { 
+			configure.getUserProperties().put("CARD", card);
 		}
 	}
 }
