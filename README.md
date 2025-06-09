@@ -92,7 +92,8 @@ emailPort     = 587
 emailSecurity = TLSv1.2
 ```
 
-Deploying to other Java web server (Tomcat, Jetty, OpenLiberty, ...)
+Deploying to standard Java web server 
+(Tomcat, Jetty, OpenLiberty, ...)
 
 ```
 vetala
