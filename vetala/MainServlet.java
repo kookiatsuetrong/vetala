@@ -1,7 +1,7 @@
 /**
  * The Main Servlet of Vetala engine
  *
- * This servlet can be deployed to any kind of Java web server.
+ * This servlet can be deployed to any standard Java web server.
  *
  */
 
@@ -19,14 +19,14 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /*
 	Common Operations:
-	- Create Account
-	- Log In
-	- Reset Password
-	- Contact
+	1. Create Account
+	2. Log In
+	3. Reset Password
+	4. Contact
 
 	Any POST request must be immediately followed by GET Request
 
-	Create Account
+	1. Create Account
 	'
 	'-- GET  /user-check-email
 		POST /user-check-email
@@ -38,7 +38,7 @@ import jakarta.servlet.http.HttpServletResponse;
 				'
 				'-- GET /user-logout
 
-	Log In
+	2. Log In
 	'
 	'-- GET  /user-check-email
 		POST /user-check-email
@@ -50,7 +50,7 @@ import jakarta.servlet.http.HttpServletResponse;
 				'
 				'-- GET /user-logout
 
-	Reset Password
+	3. Reset Password
 	'
 	'-- GET  /reset-password
 		POST /reset-password
@@ -62,7 +62,7 @@ import jakarta.servlet.http.HttpServletResponse;
 				'
 				'-- GET  /user-check-email
 
-	Contact
+	4. Contact
 	'
 	'-- GET  /contact
 		POST /contact
@@ -114,6 +114,9 @@ public class MainServlet extends HttpServlet {
 		
 		System.out.println(pattern);
 		
+		// TODO: Support GET Request 
+		// /whatever?query=1234&location=bkk#section
+		
 		// Case 1: External
 		//         This case must be started with "/external"
 		try {
@@ -147,7 +150,7 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) { }
 		
 		// Case 3: JSP File
-		//         This case can ben any kind of JSP file
+		//         This case can be any kind of JSP file
 		var sc = getServletContext();
 		try {
 			if (uri.endsWith(".jsp")) {
