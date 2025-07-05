@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Enumeration;
 
 import server.Storage;
 import server.Setup;
@@ -232,9 +233,29 @@ public class UserHandler {
 			return context.redirect("/user-login");
 		}
 		
+		String card = null;
+		Enumeration<String> cookies = context.request.getHeaders("cookie");
+		while (cookies.hasMoreElements()) {
+			String s = cookies.nextElement();
+			if (s.startsWith("CARD")) {
+				String[] tokens = s.split("=");
+				if (tokens.length == 2) {
+					card = tokens[1];
+				}
+			}
+		}
+		
+		if (valid(card)) {
+			server.UserManagement.cookieToUserMap.put(card, user.number);
+		}
+		
 		session.setAttribute("email", email);
 		session.setAttribute("user", user);
 		return context.redirect("/user-profile");
+	}
+	
+	static boolean valid(Object o) {
+		return o != null;
 	}
 
 	/*
@@ -312,7 +333,8 @@ public class UserHandler {
 		int result = Storage.changePassword(user.email, current, password);
 		
 		if (result == 0) {
-			session.setAttribute("message", ErrorMessage.INCORRECT_CURRENT_PASSWORD);
+			session.setAttribute("message", 
+					ErrorMessage.INCORRECT_CURRENT_PASSWORD);
 			return context.redirect("/user-password");
 		}
 
@@ -326,6 +348,22 @@ public class UserHandler {
 	*   GET /user-logout
 	*/
 	static Object showLogOutPage(Context context) {
+		String card = null;
+		Enumeration<String> cookies = context.request.getHeaders("cookie");
+		while (cookies.hasMoreElements()) {
+			String s = cookies.nextElement();
+			if (s.startsWith("CARD")) {
+				String[] tokens = s.split("=");
+				if (tokens.length == 2) {
+					card = tokens[1];
+				}
+			}
+		}
+
+		if (valid(card)) {
+			server.UserManagement.cookieToUserMap.remove(card);
+		}
+		
 		if (context.isLoggedIn()) {
 			HttpSession session = context.getSession(true);
 			session.removeAttribute("email");

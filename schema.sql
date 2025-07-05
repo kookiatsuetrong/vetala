@@ -11,7 +11,11 @@ create table users
 	password      varchar(200) not null,
 	first_name    varchar(200) not null,
 	last_name     varchar(200) not null,
-	type          varchar(200) not null default 'user'
+	type          varchar(200) not null default 'user',
+	status        varchar(200),
+	detail        varchar(200),
+	signature     varchar(200),
+	account       varchar(200)
 );
 alter table users auto_increment = 1048576;
 
@@ -19,11 +23,14 @@ insert into users(email, password, first_name, last_name, type)
 values('user@email.com', upper(sha2('User1234', 512)), 
 'First', 'Last', 'administrator');
 
--- type of user
--- unknown
--- administrator
--- staff
--- user
+/*
+User.type
+unknown
+administrator
+staff
+user
+
+*/
 
 /*
 insert into users(email, password, first_name, last_name, type)
