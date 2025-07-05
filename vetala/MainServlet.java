@@ -92,6 +92,8 @@ public class MainServlet extends HttpServlet {
 		map.put("POST /user-photo",       UserHandler::changeUserPhoto);
 		map.put( "GET /user-logout",      UserHandler::showLogOutPage);
 		
+		map.put( "GET /friend-search",    FriendHandler::showSearchFriend);
+		
 		map.put( "GET /error",            UserHandler::showErrorPage);
 		
 		map.put( "GET /contact",       ContactHandler::showPage);

@@ -453,5 +453,6 @@ public class UserHandler {
 
 		return context.redirect("/user-check-email");
 	}
+	
 }
 

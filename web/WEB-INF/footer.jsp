@@ -53,4 +53,18 @@ User footerUser = (User)session.getAttribute("user");
 				}
 			</style>
 
+			<script>
+				if (socket != null) {
+					console.log("There exist the WebSocket instance")
+				}
+				
+				var url = "ws://" + location.host + "/ws"
+				// var url = "wss://" + location.host + "/ws"
+				
+				if (socket == null) {
+					var socket = new WebSocket(url)
+					console.log("WebSocket instance has been created")
+				}
+			</script>
 		</footer>
+

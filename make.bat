@@ -1,4 +1,4 @@
-javac --class-path "runtime/*" vetala/Handler.java
+javac --class-path "runtime/*"        vetala/Handler.java
 javac --class-path "runtime/*;vetala" vetala/*.java
 javac --class-path "runtime/*;vetala" vetala/server/*.java
 

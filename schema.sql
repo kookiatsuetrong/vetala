@@ -24,13 +24,26 @@ values('user@email.com', upper(sha2('User1234', 512)),
 'First', 'Last', 'administrator');
 
 /*
-User.type
+User Type
 unknown
 administrator
 staff
 user
-
 */
+
+create table friends
+(
+	source int not null,
+	target int not null,
+	since  timestamp default now()
+);
+
+create table friend_requests
+(
+	source int not null,
+	target int not null,
+	since  timestamp default now()
+);
 
 /*
 insert into users(email, password, first_name, last_name, type)
