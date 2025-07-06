@@ -32,14 +32,17 @@
 					for (User u : list) {
 						out.println("<section class='profile'>");
 						out.println("<span>");
-						out.println("<img id='profile-" +
-										u.number + "' />");
+						out.println("<img src='/uploaded/empty-photo.png' " +
+										"id='profile-" + u.number + "' />");
 						out.println("</span>");
 						
 						out.println("<span>");
 						out.println("<span class='name'>");
 						out.println(u.firstName + " " + u.lastName);
 						out.println("</span>");
+						out.println("<span class='status' " +
+										"id='status-" + u.number +
+										"'>...</span>");
 						out.println("</span>");
 						out.println("</section>");
 					}
@@ -52,8 +55,13 @@
 							out.println(u.number + ",");
 						}
 								%>]
-					start()
-					async function start() {
+										
+					updatePhoto()
+					updateStatus()
+					
+					setInterval( () => updateStatus(), 5000)
+					
+					async function updatePhoto() {
 						for (var i = 0; i < users.length; i++) {
 							var target = "profile-" + users[i]
 							var element = document.getElementById(target)
@@ -62,12 +70,33 @@
 							element.src = await loadPhoto(photo)
 						}
 					}
+					
 					async function loadPhoto(url) {
 						var response = await fetch(url)
 						if (response.status == 200) {
 							return url
 						}
 						return "/uploaded/empty-photo.png"
+					}
+					
+					async function updateStatus() {
+						console.log("Update Status " + new Date() )
+						for (var i = 0; i < users.length; i++) {
+							var url = "/api/user-status?user=" + users[i]
+							var response = await fetch(url)
+							var detail   = await response.json()
+							var target   = "status-" + users[i]
+							var element  = document.getElementById(target)
+							element.innerHTML = detail.result
+							if (detail.result == "Online") {
+								element.classList.add("status-online")
+								element.classList.remove("status-offline")
+							}
+							if (detail.result == "Offline") {
+								element.classList.add("status-offline")
+								element.classList.remove("status-online")
+							}
+						}
 					}
 				</script>
 				<style>
@@ -97,9 +126,22 @@
 					}
 					.profile .name {
 						display: block;
-						margin-top: .5rem;
+						margin: .5rem 0;
 						font-size: 1rem;
 						font-weight: bold;
+					}
+					.profile .status {
+						font-size: .8rem;
+						border-radius: 1rem;
+						padding: .2rem .5rem;
+					}
+					.profile .status-online {
+						background: #8f8;
+						color: #262;
+					}
+					.profile .status-offline {
+						background: #fdd;
+						color: #622;
 					}
 				</style>
 			</section>
