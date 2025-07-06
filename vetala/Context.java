@@ -8,6 +8,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import server.User;
 
 public class Context {
@@ -33,6 +34,23 @@ public class Context {
 		} catch (Exception e) { 
 			return "Error";
 		}
+	}
+	
+	public String send(String s) {
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(s);
+		} catch (Exception e) { }
+		return "SENT";
+	}
+	
+	public String sendJson(String s) {
+		try {
+			response.setHeader("Content-Type", "application/json");
+			PrintWriter out = response.getWriter();
+			out.print(s);
+		} catch (Exception e) { }
+		return "SENT";
 	}
 	
 	public String getParameter(String s) {

@@ -92,9 +92,10 @@ public class MainServlet extends HttpServlet {
 		map.put("POST /user-photo",       UserHandler::changeUserPhoto);
 		map.put( "GET /user-logout",      UserHandler::showLogOutPage);
 		
-		map.put( "GET /friend-search",    FriendHandler::showSearchFriend);
-		
 		map.put( "GET /error",            UserHandler::showErrorPage);
+		
+		map.put( "GET /friend-search",    FriendHandler::showSearchFriend);
+		map.put( "GET /api/user-status",  FriendHandler::getUserStatus);
 		
 		map.put( "GET /contact",       ContactHandler::showPage);
 		map.put("POST /contact",       ContactHandler::saveDetail);
@@ -107,6 +108,10 @@ public class MainServlet extends HttpServlet {
 		map.put( "GET /reset-password-final", ResetHandler::showFinal);
 	}
 	
+	boolean valid(Object o) {
+		return o != null;
+	}
+	
 	@Override
 	public void service(HttpServletRequest request,
 						HttpServletResponse response) {
@@ -116,8 +121,8 @@ public class MainServlet extends HttpServlet {
 		
 		System.out.println(pattern);
 		
-		// TODO: Support GET Request 
-		// /whatever?query=1234&location=bkk#section
+		// TODO: Support GET Request writh /x/y/z
+		// /whatever/parameter/sample/query
 		
 		// Case 1: External
 		//         This case must be started with "/external"
@@ -145,7 +150,7 @@ public class MainServlet extends HttpServlet {
 		context.response = response;
 		try {
 			ContextHandler handler = map.get(pattern);
-			if (handler != null) {
+			if (valid(handler)) {
 				handler.handle(context);
 				return;
 			}

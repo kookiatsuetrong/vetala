@@ -32,7 +32,7 @@ public class UserManagement {
 		sessionMap.put(userNumber, w);
 	}
 	
-	public String getUserStatus(int userNumber) {
+	public static String getUserStatus(int userNumber) {
 		Integer current = sessionMap.get(userNumber);
 		if (current == null) {
 			return "Offline";

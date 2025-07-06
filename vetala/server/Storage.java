@@ -175,4 +175,33 @@ public class Storage {
 		return user;
 	}
 	
+	public static ArrayList<User>
+	searchFriend(String query) {
+		String source = Setup.connectionString;
+		var sql =   " select distinct * from users " +
+					" where email = ?              " +
+					" or first_name like ?         " +
+					" or last_name  like ?         ";
+		ArrayList<User> result = new ArrayList<>();
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(sql);
+			ps.setString(1, query);
+			ps.setString(2, "%" + query + "%");
+			ps.setString(3, "%" + query + "%");
+			var rs = ps.executeQuery();
+			while (rs.next()) {
+				User u = new User();
+				u.number    = rs.getInt("number");
+				u.email     = rs.getString("email");
+				u.firstName = rs.getString("first_name");
+				u.lastName  = rs.getString("last_name");
+				u.password  = "";
+				u.type      = rs.getString("type");
+				result.add(u);
+			}
+			rs.close(); ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
 }
