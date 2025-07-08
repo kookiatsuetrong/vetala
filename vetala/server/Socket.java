@@ -22,6 +22,9 @@ public class Socket {
 	public void handleOpen(Session session, 
 							EndpointConfig configure) {
 		try {
+			
+			session.setMaxIdleTimeout(24 * 60 * 60 * 100);
+			
 			String socketNumber = session.getId();
 			map.put(socketNumber, session);
 			

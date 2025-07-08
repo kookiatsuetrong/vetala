@@ -54,16 +54,17 @@ User footerUser = (User)session.getAttribute("user");
 			</style>
 
 			<script>
-				if (socket != null) {
-					console.log("There exist the WebSocket instance")
+				var endpoint = "ws://"  + window.location.host + "/ws"
+				if (window.location.protocol == "https:") {
+					endpoint = "wss://" + window.location.host + "/ws"
 				}
 				
-				var url = "ws://" + location.host + "/ws"
-				// var url = "wss://" + location.host + "/ws"
-				
-				if (socket == null) {
-					var socket = new WebSocket(url)
-					console.log("WebSocket instance has been created")
+				start()
+	
+				function start() {
+					var socket = new WebSocket(endpoint)
+					socket.addEventListener("close", e => start())
+					console.log("Restarting Web Socket")
 				}
 			</script>
 		</footer>

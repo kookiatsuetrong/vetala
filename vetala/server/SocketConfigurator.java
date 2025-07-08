@@ -21,18 +21,25 @@ public class SocketConfigurator extends
 		// System.out.println(headers);
 		String card = null;
 		List<String> cookies = headers.get("cookie");
-		for (String s : cookies) {
-			if (s.startsWith("CARD")) {
-				String[] tokens = s.split("=");
-				if (tokens.length == 2) {
-					card = tokens[1];
+		for (String c : cookies) {
+			String[] items = c.split(";");
+			for (String t : items) {
+				t = t.trim();
+				if (t.startsWith("CARD")) {
+					String[] tokens = t.split("=");
+					if (tokens.length == 2) {
+						card = tokens[1];
+					}
 				}
 			}
 		}
 		
-		if (card == null) { }
-		if (card != null) { 
+		if (valid(card)) { 
 			configure.getUserProperties().put("CARD", card);
 		}
+	}
+	
+	boolean valid(Object o) {
+		return o != null;
 	}
 }
