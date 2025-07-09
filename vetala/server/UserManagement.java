@@ -48,7 +48,7 @@ public class UserManagement {
 	
 	static Map<Integer, Integer>       sessionMap        = new HashMap<>();
 	static Map<String, String>         socketToCookieMap = new HashMap<>();
-	public static Map<String, Integer> cookieToUserMap   = new HashMap<>();
 	static Map<String, Integer>        socketToUserMap   = new HashMap<>();
+	public static Map<String, Integer> cookieToUserMap   = new HashMap<>();
 	
 }

@@ -355,11 +355,15 @@ public class UserHandler {
 		String card = null;
 		Enumeration<String> cookies = context.request.getHeaders("cookie");
 		while (cookies.hasMoreElements()) {
-			String s = cookies.nextElement();
-			if (s.startsWith("CARD")) {
-				String[] tokens = s.split("=");
-				if (tokens.length == 2) {
-					card = tokens[1];
+			String c = cookies.nextElement();
+			String[] items = c.split(";");
+			for (String t : items) {
+				t = t.trim();
+				if (t.startsWith("CARD")) {
+					String[] tokens = t.split("=");
+					if (tokens.length == 2) {
+						card = tokens[1];
+					}
 				}
 			}
 		}
