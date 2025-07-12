@@ -37,9 +37,11 @@
 						out.println("</span>");
 						
 						out.println("<span>");
-						out.println("<span class='name'>");
+						out.println("<span class='name'>" +
+									"<a href='/member-detail?number=" +
+									u.number + "'>");
 						out.println(u.firstName + " " + u.lastName);
-						out.println("</span>");
+						out.println("</a></span>");
 						out.println("<span class='status' " +
 										"id='status-" + u.number +
 										"'>...</span>");
@@ -55,11 +57,11 @@
 							out.println(u.number + ",");
 						}
 								%>]
-										
-					updatePhoto()
+	
 					updateStatus()
-					
 					setInterval( () => updateStatus(), 5000)
+					
+					updatePhoto()
 					
 					async function updatePhoto() {
 						for (var i = 0; i < users.length; i++) {

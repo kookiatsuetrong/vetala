@@ -10,6 +10,7 @@ public class Storage {
 
 	public static User 
 	getUserByEmail(String email) {
+		if (email == null) return null;
 		String source = Setup.connectionString;
 		var sql = "select * from users where email = ?";
 		User u = null;
@@ -17,6 +18,31 @@ public class Storage {
 			var cn = DriverManager.getConnection(source);
 			var ps = cn.prepareStatement(sql);
 			ps.setString(1, email);
+			var rs = ps.executeQuery();
+			if (rs.next()) {
+				u = new User();
+				u.number    = rs.getInt("number");
+				u.email     = rs.getString("email");
+				u.firstName = rs.getString("first_name");
+				u.lastName  = rs.getString("last_name");
+				u.password  = rs.getString("password");
+				u.type      = rs.getString("type");
+			}
+			rs.close(); ps.close(); cn.close();
+		} catch (Exception e) { }
+		return u;
+	}
+	
+	public static User 
+	getUserByNumber(String number) {
+		if (number == null) return null;
+		String source = Setup.connectionString;
+		var sql = "select * from users where number = ?";
+		User u = null;
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(sql);
+			ps.setString(1, number);
 			var rs = ps.executeQuery();
 			if (rs.next()) {
 				u = new User();

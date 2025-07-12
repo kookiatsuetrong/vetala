@@ -11,13 +11,12 @@ import server.UserManagement;
 class FriendHandler {
 
 	/*
-	*  Displays the search friend pages
+	*  Displays the search friends page
 	*
-	*  GET /user-search-friend
+	*  GET /friend-search
 	*/
 	static Object showSearchFriend(Context context) {
-		if (context.isLoggedIn()) {
-			
+		if (context.isLoggedIn()) {		
 			String query = context.getParameter("query");
 			System.out.println("Query = " + query);
 			
@@ -31,30 +30,28 @@ class FriendHandler {
 		return context.redirect("/user-check-email");
 	}
 	
-	
 	/*
-	*  Get User Status
+	* Displays user detail of the given member
 	*
-	*  GET /api/user-status
+	* GET /member-detail?number=123456
+	*
+	* GET /member-detail/123456               TODO: Support this
+	* GET /member-detail/uuuu-xxxx-yyyy-zzzz  TODO: Support this
 	*/
-	static Object getUserStatus(Context context) {
-		String result = "Access Denied";
-		String user = context.getParameter("user");
-		
+	static Object showMemberDetail(Context context) {
 		if (context.isLoggedIn()) {
-			try {
-				Integer number = Integer.valueOf(user);
-				result = UserManagement.getUserStatus(number);
-			} catch (Exception e) {
-				result = "Invalid User";
+			String number = context.getParameter("number");
+			User user = Storage.getUserByNumber(number);
+			
+			if (valid(number) && valid(user)) {
+				context.request.setAttribute("user", user);
+				return context.render("/WEB-INF/user-detail.jsp");
 			}
+			
+			return context.render("/WEB-INF/user-not-found.jsp");
 		}
-		JsonObject o = Json.createObjectBuilder()
-						.add("result", result)
-						.add("user",   user)
-						.build();
 		
-		return context.sendJson(o.toString());
+		return context.redirect("/user-check-email");
 	}
 	
 	static boolean valid(Object o) {
