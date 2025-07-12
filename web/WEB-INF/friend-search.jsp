@@ -79,25 +79,40 @@
 						return "/uploaded/empty-photo.png"
 					}
 					
-					async function updateStatus() {
+					function updateStatus() {
 						console.log("Update Status " + new Date() )
 						for (var i = 0; i < users.length; i++) {
-							var url = "/api/user-status?user=" + users[i]
-							var response = await fetch(url)
-							var detail   = await response.json()
-							var target   = "status-" + users[i]
-							var element  = document.getElementById(target)
-							element.innerHTML = detail.result
-							if (detail.result == "Online") {
-								element.classList.add("status-online")
-								element.classList.remove("status-offline")
-							}
-							if (detail.result == "Offline") {
-								element.classList.add("status-offline")
-								element.classList.remove("status-online")
-							}
+							var url = "/service-user-status?user=" + users[i]
+							fetch(url)
+							.then(convertStatus)
+							.then(displayStatus)
 						}
 					}
+					
+					function convertStatus(response) {
+						return response.json()
+					}
+					
+					function displayStatus(detail) {
+						console.log(detail)
+						
+						var target   = "status-" + detail.user
+						var element  = document.getElementById(target)
+						element.innerHTML = detail.result
+						
+						if (detail.result == "Online") {
+							element.classList.add("status-online")
+							element.classList.remove("status-offline")
+						}
+						
+						if (detail.result == "Offline") {
+							element.classList.add("status-offline")
+							element.classList.remove("status-online")
+						}
+						
+						// TODO: Add "Access Denied"
+					}
+					
 				</script>
 				<style>
 					.user-form {

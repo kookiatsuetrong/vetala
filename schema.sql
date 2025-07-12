@@ -70,6 +70,24 @@ insert into users(email, password, first_name, last_name, type)
 values('frank@email.com', upper(sha2('Frank1234', 512)), 
 'Frank', 'Fremont', 'user');
 
+insert into users(email, password, first_name, last_name, type)
+values('grace@email.com', upper(sha2('Grace1234', 512)), 
+'Grace', 'Gateway', 'user');
+
+insert into users(email, password, first_name, last_name, type)
+values('harry@email.com', upper(sha2('Harry1234', 512)), 
+'Harry', 'Houston', 'user');
+
+insert into users(email, password, first_name, last_name, type)
+values('iris@email.com', upper(sha2('Iris1234', 512)), 
+'Iris', 'Inkster', 'user');
+
+insert into users(email, password, first_name, last_name, type)
+values('john@email.com', upper(sha2('John1234', 512)), 
+'John', 'Jackson', 'user');
+
+
+
 */
 
 
