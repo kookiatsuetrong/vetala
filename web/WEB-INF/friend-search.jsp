@@ -14,7 +14,7 @@
 			<section class="container">
 				<section class="duo">
 					<form class="user-form">
-						<h3>Friend Search</h3>
+						<h2>Friend Search</h2>
 						<input
 							name="query"
 							type="search" 

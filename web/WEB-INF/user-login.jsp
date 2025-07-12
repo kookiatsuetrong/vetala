@@ -20,7 +20,7 @@
 				session.removeAttribute("message");
 				%>
 				<form class="user-form" method="post">
-					<h3>Log In</h3>
+					<h2>Log In</h2>
 					
 					<% if ("".equals(message) == false) {       %>
 						<span class="error">

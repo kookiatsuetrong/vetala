@@ -22,7 +22,7 @@
 				%>
 
 				<form class="user-form" method="post">
-					<h3>Register or Log In</h3>
+					<h2>Register or Log In</h2>
 					
 					<% if ("".equals(message) == false) {       %>
 						<span class="error">

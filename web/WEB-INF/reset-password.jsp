@@ -11,7 +11,7 @@
 		<main>
 			<section class="container">
 				<form class="user-form" method="post">
-					<h3>Reset Password</h3>
+					<h2>Reset Password</h2>
 					
 					<%
 					String message = (String)session.getAttribute("message");

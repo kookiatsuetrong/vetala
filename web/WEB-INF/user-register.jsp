@@ -39,7 +39,7 @@
 			%>
 			<section class="container">
 				<form class="user-form" method="post">
-					<h3>Register</h3>
+					<h2>Register</h2>
 					<% if ("".equals(message) == false) {       %>
 						<span class="error">
 							<%= message %>
