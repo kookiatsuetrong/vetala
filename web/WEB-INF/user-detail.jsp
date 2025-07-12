@@ -9,23 +9,33 @@
 	<body>
 		<header></header>
 		<main>
-			<section class="container">
-				<%
-					User user = (User)request.getAttribute("user");
-					if (user == null) {
-						user = new User();
-					}
-					if (user.firstName == null) user.firstName = "";
-					if (user.lastName  == null) user.lastName  = "";
-				%>
-				<img src="/uploaded/empty-photo.png" 
-					class="profile-photo"
-					id="profile-<%= user.number %>" />
-				<h3><%= user.firstName %>
-					<%= user.lastName %>
-				</h3>
-				<span class="status" id="status-<%= user.number %>"
-					>...</span>
+			<section class="container duo">
+				<section class="left-panel">
+					<h3>User Detail</h3>
+					
+					<p>
+						The detail and photo of 
+						specific user.
+					</p>
+				</section>
+				<section>
+					<%
+						User user = (User)request.getAttribute("user");
+						if (user == null) {
+							user = new User();
+						}
+						if (user.firstName == null) user.firstName = "";
+						if (user.lastName  == null) user.lastName  = "";
+					%>
+					<img src="/uploaded/empty-photo.png" 
+						class="profile-photo"
+						id="profile-<%= user.number %>" />
+					<h3><%= user.firstName %>
+						<%= user.lastName %>
+					</h3>
+					<span class="status" id="status-<%= user.number %>"
+						>...</span>
+				</section>
 			</section>
 			<script>
 				var user = <%= user.number %>
@@ -82,6 +92,23 @@
 				
 			</script>
 			<style>
+				
+				.duo {
+					display: grid;
+					column-gap: 2rem;
+				}
+				@media (min-width: 640px) {
+					.duo {
+						grid-template-columns: 20rem 1fr;
+					}
+				}
+				.left-panel {
+					background: var(--brand-light);
+					padding: 1rem;
+					border-radius: .5rem;
+					margin-bottom: 2rem;
+				}
+				
 				.profile-photo {
 					max-width: 4rem;
 					border-radius: 4rem;

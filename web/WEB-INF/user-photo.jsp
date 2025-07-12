@@ -9,35 +9,69 @@
 	<body>
 		<header></header>
 		<main>
-			<%
-				User user = (User)session.getAttribute("user");
-				String photo = "/uploaded/empty-photo.png";
-				int userNumber = 0;
-				if (user == null) { }
-				if (user != null) {
-					userNumber = user.number;
-					photo = "/uploaded/profile-" + userNumber + ".png";
-				}
-			%>
-			<section class="container">
+			<section class="container duo">
+				<section class="left-panel">
+					<h3>User Photo</h3>
+					<p>
+						User can change his or her photo
+						from this page.
+					</p>
+				</section>
 				
-				<img class="profile" id="profile" />
-				
-				<form class="user-form"
-					method="post" 
-					enctype="multipart/form-data">
-					
-					<section class="file-upload">
-					</section>
-					
-					<br/>
-					<button>Change Profile Photo</button>
-				</form>
+				<section>
+
+					<%
+						User user = (User)session.getAttribute("user");
+						String photo = "/uploaded/empty-photo.png";
+						int userNumber = 0;
+						if (user == null) { }
+						if (user != null) {
+							userNumber = user.number;
+							photo = "/uploaded/profile-" + userNumber + ".png";
+						}
+					%>
+					<img class="profile" id="profile" />
+
+					<form class="user-form"
+						method="post" 
+						enctype="multipart/form-data">
+
+						<section class="file-upload">
+						</section>
+
+						<br/>
+						<button>Change Profile Photo</button>
+					</form>
+				</section>
 			</section>
 			<style>
+				
+				.duo {
+					display: grid;
+					column-gap: 2rem;
+				}
+				@media (min-width: 640px) {
+					.duo {
+						grid-template-columns: 20rem 1fr;
+					}
+				}
 				.user-form {
 					margin: 0;
 				}
+				.user-form h2 {
+					color: var(--brand-color);
+					margin-bottom: .5rem;
+				}
+				.left-panel {
+					background: var(--brand-light);
+					padding: 1rem 1rem 0 1rem;
+					border-radius: .5rem;
+				}
+				.left-panel p {
+					color: #666;
+					padding: 0;
+				}
+				
 				.file-upload {
 					height: 3rem;
 					border-style: dashed;

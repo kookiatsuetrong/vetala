@@ -165,6 +165,7 @@ h3 { font-size: 1.50rem; font-weight: 400; margin: 0; }
 	
 	/* green */
 	--brand-color: rgba(32, 180, 160, 1);
+	--brand-light: rgba(32, 180, 160, .05);
 	/* red */
 	/* --brand-color: rgba(220, 32, 32, 1); */
 	/* blue */

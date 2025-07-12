@@ -9,46 +9,82 @@
 	<body>
 		<header></header>
 		<main>
-			<%
-				String message = (String)session.getAttribute("message");
-				if (message == null) message = "";
-				session.removeAttribute("message");
-			%>
-			<section class="container">
-				<form class="user-form" method="post">
-					<h3>Change Password</h3>
+			<section class="container duo">
 				
-					<% if ("".equals(message) == false) {     %>
-					<span class="error"><%= message %></span>
-					<% }                                      %>
+				<section class="left-panel">
+					<h3>Change Password</h3>
+					<p>
+						User can change his or her password
+						from this page.
+					</p>
+				</section>
+				
+				<section>
 					
-					<input name="current" 
-						type="password"
-						placeholder="Current Password"
-						autocomplete="off"
-						required
-						/>
-					
-					<input name="password" 
-						type="password"
-						placeholder="New Password"
-						autocomplete="off"
-						required
-						/>
-					
-					<input name="confirm"
-						type="password"
-						placeholder="Confirm Password"
-						autocomplete="off"
-						required
-						/>
-					
-					<button>Change Password</button>
-				</form>
+					<%
+						String message = (String)session
+										.getAttribute("message");
+						if (message == null) message = "";
+						session.removeAttribute("message");
+					%>
+					<form class="user-form" method="post">
+
+						<h2>Change Password</h2>
+
+						<% if ("".equals(message) == false) {     %>
+						<span class="error"><%= message %></span>
+						<% }                                      %>
+
+						<input name="current" 
+							type="password"
+							placeholder="Current Password"
+							autocomplete="off"
+							required
+							/>
+
+						<input name="password" 
+							type="password"
+							placeholder="New Password"
+							autocomplete="off"
+							required
+							/>
+
+						<input name="confirm"
+							type="password"
+							placeholder="Confirm Password"
+							autocomplete="off"
+							required
+							/>
+
+						<button>Change Password</button>
+					</form>
+				</section>
 			</section>
 			<style>
+				.duo {
+					display: grid;
+					column-gap: 2rem;
+				}
+				@media (min-width: 640px) {
+					.duo {
+						grid-template-columns: 20rem 1fr;
+					}
+				}
 				.user-form {
 					margin: 0;
+				}
+				.user-form h2 {
+					color: var(--brand-color);
+					margin-bottom: .5rem;
+				}
+				.left-panel {
+					background: var(--brand-light);
+					padding: 1rem 1rem 0 1rem;
+					border-radius: .5rem;
+				}
+				.left-panel p {
+					color: #666;
+					padding: 0;
 				}
 			</style>
 		</main>
