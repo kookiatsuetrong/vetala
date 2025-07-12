@@ -10,13 +10,15 @@
 		<header></header>
 		<main>
 			<section class="container duo">
-				<section class="left-panel">
-					<h3>User Detail</h3>
-					
-					<p>
-						The detail and photo of 
-						specific user.
-					</p>
+				<section>
+					<section class="left-panel">
+						<h3>User Detail</h3>
+
+						<p>
+							The detail and photo of 
+							specific user.
+						</p>
+					</section>
 				</section>
 				<section>
 					<%
@@ -104,11 +106,10 @@
 				}
 				.left-panel {
 					background: var(--brand-light);
-					padding: 1rem;
+					padding: 1rem 1rem .1rem 1rem;
 					border-radius: .5rem;
-					margin-bottom: 2rem;
+					margin-bottom: 1rem;
 				}
-				
 				.profile-photo {
 					max-width: 4rem;
 					border-radius: 4rem;

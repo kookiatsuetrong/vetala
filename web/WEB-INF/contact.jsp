@@ -9,13 +9,15 @@
 		<header></header>
 		<main>
 			<section class="container duo">
-				<section class="left-panel">
-					<h3>Contact</h3>
-					<p>
-						Use this page to send
-						message or photo
-						directly to the operation team.
-					</p>
+				<section>
+					<section class="left-panel">
+						<h3>Contact</h3>
+						<p>
+							Use this page to send
+							message or photo
+							directly to the operation team.
+						</p>
+					</section>
 				</section>
 				<section>
 					<%
@@ -111,8 +113,9 @@
 				}
 				.left-panel {
 					background: var(--brand-light);
-					padding: 1rem 1rem 0 1rem;
+					padding: 1rem 1rem .1rem 1rem;
 					border-radius: .5rem;
+					margin-bottom: 1rem;
 				}
 				.left-panel p {
 					color: #666;
