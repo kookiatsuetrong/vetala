@@ -19,7 +19,7 @@
 				<p>
 				<%= message %>
 				</p>
-				<a class="button" href="/user-check-email">Log In</a>
+				<a class="button" href="/user-login">Log In</a>
 				<a class="button" href="/reset-password">Reset Password</a>
 			</section>
 		</main>

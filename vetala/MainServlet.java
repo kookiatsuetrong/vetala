@@ -96,7 +96,21 @@ public class MainServlet extends HttpServlet {
 		
 		map.put( "GET /friend-search",    FriendHandler::showSearchFriend);
 		map.put( "GET /member-detail",    FriendHandler::showMemberDetail);
+		
+		map.put( "GET /service-list-friend",    Service::listFriend);
 		map.put( "GET /service-user-status",    Service::replyUserStatus);
+		map.put( "GET /service-accept-friend",  Service::acceptFriend);
+		map.put( "GET /service-unfriend",       Service::unfriend);
+		map.put( "GET /service-friend-request", Service::friendRequest);
+		map.put( "GET /service-cancel-friend-request", 
+												Service::cancelFriendRequest);
+		map.put( "GET /service-reject-friend-request", 
+												Service::rejectFriendRequest);
+		map.put( "GET /service-list-friend-request",
+												Service::listFriendRequest);
+		map.put( "GET /service-list-friend-request-to-me",
+												Service::listFriendRequestToMe);
+		
 		map.put( "GET /service-error",          Service::replyError);
 		
 		map.put( "GET /contact",       ContactHandler::showPage);

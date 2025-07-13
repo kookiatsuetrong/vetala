@@ -167,6 +167,223 @@ public class Storage {
 		return first;
 	}
 	
+	public static boolean
+	addFriendRequest(int sourceUser, int targetUser) {
+		String source = Setup.connectionString;
+		boolean existing = false;
+		
+		var query = " select * from friend_requests   " +
+					" where source = ? and target = ? ";
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(query);
+			ps.setInt(1, sourceUser);
+			ps.setInt(2, targetUser);
+			var rs = ps.executeQuery();
+			if (rs.next()) {
+				existing = true;
+			}
+			rs.close(); ps.close(); cn.close();
+		} catch (Exception e) { }
+		
+		// TODO: Update timestamp instead of doing nothing
+		if (existing) {
+			return false;
+		}
+		
+		boolean result = false;
+		
+		var sql =   " insert into friend_requests    " +
+					" (source, target, time)         " +
+					" values(?, ?, utc_timestamp() ) ";
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(sql);
+			ps.setInt(1, sourceUser);
+			ps.setInt(2, targetUser);
+			result = ps.execute();
+			ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+
+	public static boolean
+	cancelFriendRequest(int sourceUser, int targetUser) {
+		String source = Setup.connectionString;
+		boolean result = false;
+		
+		var sql =   " delete from friend_requests     " +
+					" where source = ? and target = ? ";
+				
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(sql);
+			ps.setInt(1, sourceUser);
+			ps.setInt(2, targetUser);
+			result = ps.execute();
+			ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+	
+	public static boolean
+	rejectFriendRequest(int sourceUser, int targetUser) {
+		String source = Setup.connectionString;
+		boolean result = false;
+		
+		var query = " delete from friend_requests     " +
+					" where source = ? and target = ? ";
+
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(query);
+			ps.setInt(1, sourceUser);
+			ps.setInt(2, targetUser);
+			result = ps.execute();
+			ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+	
+	public static boolean
+	acceptFriend(int sourceUser, int targetUser) {
+		String source = Setup.connectionString;
+		boolean result = false;
+		
+		try {
+			var query = " insert into friends          " +
+						" (source, target, time)       " +
+						" values(?, ?, utc_timestamp)  ";
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(query);
+			ps.setInt(1, sourceUser);
+			ps.setInt(2, targetUser);
+			result = ps.execute();
+			ps.close(); cn.close();
+		} catch (Exception e) { }
+		
+		try {
+			var query = " delete from friend_requests     " +
+						" where source = ? and target = ? ";
+
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(query);
+			ps.setInt(1, sourceUser);
+			ps.setInt(2, targetUser);
+			result = ps.execute();
+			ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+	
+	public static boolean
+	unfriend(int sourceUser, int targetUser) {
+		String source = Setup.connectionString;
+		boolean result = false;
+		
+		var query = " delete from friends               " +
+					" where (source = ? and target = ?) " +
+					"    or (source = ? and target = ?) ";
+
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(query);
+			ps.setInt(1, sourceUser);
+			ps.setInt(2, targetUser);
+			ps.setInt(3, targetUser);
+			ps.setInt(4, sourceUser);
+			result = ps.execute();
+			ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+	
+	public static ArrayList<User>
+	getMyFriend(int number) {
+		String source = Setup.connectionString;		
+		
+		ArrayList<User> result = new ArrayList<>();
+		try {
+			var query = "select * from users where number in " +
+						"(select source as user from friends " +
+						" where target = ?                   " +
+						" union all                          " +
+						" select target as user from friends " +
+						" where source = ?                  )";
+			
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(query);
+			ps.setInt(1, number);
+			ps.setInt(2, number);
+			var rs = ps.executeQuery();
+			while (rs.next()) {
+				User u = new User();
+				u.number    = rs.getInt("number");
+				u.firstName = rs.getString("first_name");
+				u.lastName  = rs.getString("last_name");
+				u.type      = rs.getString("type");
+				result.add(u);
+			}
+			rs.close(); ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+	
+	public static ArrayList<User>
+	getMyFriendRequest(int number) {
+		String source = Setup.connectionString;
+		
+		var query = " select * from users where            " +
+					" number in                            " +
+					" (select target from friend_requests  " +
+					"  where source = ?)                   ";
+		
+		ArrayList<User> result = new ArrayList<>();
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(query);
+			ps.setInt(1, number);
+			var rs = ps.executeQuery();
+			while (rs.next()) {
+				User u = new User();
+				u.number    = rs.getInt("number");
+				u.firstName = rs.getString("first_name");
+				u.lastName  = rs.getString("last_name");
+				u.type      = rs.getString("type");
+				result.add(u);
+			}
+			rs.close(); ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+	
+	public static ArrayList<User>
+	getFriendRequestToMe(int number) {
+		String source = Setup.connectionString;
+		var query = " select * from users where            " +
+					" number in                            " +
+					" (select source from friend_requests  " +
+					"  where target = ?)                   ";
+		
+		ArrayList<User> result = new ArrayList<>();
+		try {
+			var cn = DriverManager.getConnection(source);
+			var ps = cn.prepareStatement(query);
+			ps.setInt(1, number);
+			var rs = ps.executeQuery();
+			while (rs.next()) {
+				User u = new User();
+				u.number    = rs.getInt("number");
+				u.firstName = rs.getString("first_name");
+				u.lastName  = rs.getString("last_name");
+				u.type      = rs.getString("type");
+				result.add(u);
+			}
+			rs.close(); ps.close(); cn.close();
+		} catch (Exception e) { }
+		return result;
+	}
+	
 	/*
 		WARNING: This method can be attacked by SQL Injection
 		Try to log in by this password:

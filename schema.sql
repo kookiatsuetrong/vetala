@@ -47,49 +47,46 @@ create table friend_requests
 
 /*
 insert into users(email, password, first_name, last_name, type)
-values('alice@email.com', upper(sha2('Alice1234', 512)), 
-'Alice', 'Atlanta', 'user');
+	values('alice@email.com', upper(sha2('Alice1234', 512)), 
+	'Alice', 'Atlanta', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('bob@email.com', upper(sha2('Bob1234', 512)), 
-'Bob', 'Boston', 'user');
+	values('bob@email.com', upper(sha2('Bob1234', 512)), 
+	'Bob', 'Boston', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('cecil@email.com', upper(sha2('Cecil1234', 512)), 
-'Cecil', 'Chicago', 'user');
+	values('cecil@email.com', upper(sha2('Cecil1234', 512)), 
+	'Cecil', 'Chicago', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('david@email.com', upper(sha2('David1234', 512)), 
-'David', 'Detroit', 'user');
+	values('david@email.com', upper(sha2('David1234', 512)), 
+	'David', 'Detroit', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('emma@email.com', upper(sha2('Emma1234', 512)), 
-'Emma', 'Exeter', 'user');
+	values('emma@email.com', upper(sha2('Emma1234', 512)), 
+	'Emma', 'Exeter', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('frank@email.com', upper(sha2('Frank1234', 512)), 
-'Frank', 'Fremont', 'user');
+	values('frank@email.com', upper(sha2('Frank1234', 512)), 
+	'Frank', 'Fremont', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('grace@email.com', upper(sha2('Grace1234', 512)), 
-'Grace', 'Gateway', 'user');
+	values('grace@email.com', upper(sha2('Grace1234', 512)), 
+	'Grace', 'Gateway', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('harry@email.com', upper(sha2('Harry1234', 512)), 
-'Harry', 'Houston', 'user');
+	values('harry@email.com', upper(sha2('Harry1234', 512)), 
+	'Harry', 'Houston', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('iris@email.com', upper(sha2('Iris1234', 512)), 
-'Iris', 'Inkster', 'user');
+	values('iris@email.com', upper(sha2('Iris1234', 512)), 
+	'Iris', 'Inkster', 'user');
 
 insert into users(email, password, first_name, last_name, type)
-values('john@email.com', upper(sha2('John1234', 512)), 
-'John', 'Jackson', 'user');
-
-
+	values('john@email.com', upper(sha2('John1234', 512)), 
+	'John', 'Jackson', 'user');
 
 */
-
 
 create table messages
 (
@@ -103,6 +100,17 @@ create table messages
 insert into messages(topic,email,time) 
 	values('Topic 1', 'email@sample.com', utc_timestamp());
 
+create table friend_requests
+(
+	source        int not null,
+	target        int not null,
+	time          timestamp
+);
 
-
+create table friends
+(
+	source        int not null,
+	target        int not null,
+	time          timestamp
+);
 

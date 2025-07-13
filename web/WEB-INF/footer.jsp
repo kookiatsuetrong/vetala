@@ -12,8 +12,8 @@ User footerUser = (User)session.getAttribute("user");
 
 				<% if (footerUser == null) {       %>
 				<p>
-					<a href="/user-check-email">Register</a>
-					<a href="/user-check-email">Log In</a>
+					<a href="/user-register">Register</a>
+					<a href="/user-login">Log In</a>
 					<a href="/reset-password">Reset Password</a>
 				</p>
 				<% } %>
