@@ -9,17 +9,32 @@ import server.UserManagement;
 
 
 class FriendHandler {
+	
+	/*
+	*  Displays friend list
+	*
+	*  GET /friend
+	*  GET /friends
+	*/
+	static Object showFriend(Context context) {
+		User user = context.getCurrentUser();
+		if (valid(user)) {
+			ArrayList<User> result = Storage.getMyFriend(user.number);
+			context.request.setAttribute("friends", result);
+			return context.render("/WEB-INF/friend.jsp");
+		}
+		return context.redirect("/user-check-email");
+	}
 
 	/*
-	*  Displays the search friends page
+	*  Displays the friend searching page
 	*
 	*  GET /friend-search
 	*/
 	static Object showSearchFriend(Context context) {
 		if (context.isLoggedIn()) {		
 			String query = context.getParameter("query");
-			System.out.println("Query = " + query);
-			
+
 			if (valid(query) && query.length() > 0) {
 				ArrayList<User> result = Storage.searchFriend(query);
 				context.request.setAttribute("list", result);
@@ -57,5 +72,5 @@ class FriendHandler {
 	static boolean valid(Object o) {
 		return o != null;
 	}
-
+	
 }

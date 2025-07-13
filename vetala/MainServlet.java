@@ -83,25 +83,30 @@ public class MainServlet extends HttpServlet {
 		map.put("POST /user-check-email", UserHandler::checkEmail);
 		map.put( "GET /user-register",    UserHandler::showRegisterPage);
 		map.put("POST /user-register",    UserHandler::createAccount);
-		map.put( "GET /user-login",       UserHandler::showLogInPage);
-		map.put("POST /user-login",       UserHandler::checkPassword);
-		map.put( "GET /user-profile",     UserHandler::showProfilePage);
-		map.put( "GET /user-password",    UserHandler::showPasswordPage);
-		map.put("POST /user-password",    UserHandler::changePassword);
-		map.put( "GET /user-photo",       UserHandler::showUserPhotoPage);
-		map.put("POST /user-photo",       UserHandler::changeUserPhoto);
-		map.put( "GET /user-logout",      UserHandler::showLogOutPage);
+
+		map.put( "GET /user-login",     UserHandler::showLogInPage);
+		map.put("POST /user-login",     UserHandler::checkPassword);
+		map.put( "GET /user-profile",   UserHandler::showProfilePage);
+		map.put( "GET /user-password",  UserHandler::showPasswordPage);
+		map.put("POST /user-password",  UserHandler::changePassword);
+		map.put( "GET /user-photo",     UserHandler::showUserPhotoPage);
+		map.put("POST /user-photo",     UserHandler::changeUserPhoto);
+		map.put( "GET /user-logout",    UserHandler::showLogOutPage);
 		
-		map.put( "GET /error",            UserHandler::showErrorPage);
+		map.put( "GET /error",          UserHandler::showErrorPage);
 		
-		map.put( "GET /friend-search",    FriendHandler::showSearchFriend);
-		map.put( "GET /member-detail",    FriendHandler::showMemberDetail);
+		map.put( "GET /friend-search",  FriendHandler::showSearchFriend);
+		map.put( "GET /friend",         FriendHandler::showFriend);
+		map.put( "GET /friends",        FriendHandler::showFriend);
+		map.put( "GET /member-detail",  FriendHandler::showMemberDetail);
 		
+		map.put( "GET /service-error",          Service::replyError);
 		map.put( "GET /service-list-friend",    Service::listFriend);
 		map.put( "GET /service-user-status",    Service::replyUserStatus);
-		map.put( "GET /service-accept-friend",  Service::acceptFriend);
 		map.put( "GET /service-unfriend",       Service::unfriend);
 		map.put( "GET /service-friend-request", Service::friendRequest);
+		map.put( "GET /service-accept-friend",  Service::acceptFriend);
+		
 		map.put( "GET /service-cancel-friend-request", 
 												Service::cancelFriendRequest);
 		map.put( "GET /service-reject-friend-request", 
@@ -111,7 +116,6 @@ public class MainServlet extends HttpServlet {
 		map.put( "GET /service-list-friend-request-to-me",
 												Service::listFriendRequestToMe);
 		
-		map.put( "GET /service-error",          Service::replyError);
 		
 		map.put( "GET /contact",       ContactHandler::showPage);
 		map.put("POST /contact",       ContactHandler::saveDetail);
