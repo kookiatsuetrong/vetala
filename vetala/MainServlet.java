@@ -102,6 +102,7 @@ public class MainServlet extends HttpServlet {
 		
 		map.put( "GET /service-error",          Service::replyError);
 		map.put( "GET /service-list-friend",    Service::listFriend);
+		// map.put( "GET /service-user-detail",    Service::replyUserDetail);
 		map.put( "GET /service-user-status",    Service::replyUserStatus);
 		map.put( "GET /service-unfriend",       Service::unfriend);
 		map.put( "GET /service-friend-request", Service::friendRequest);

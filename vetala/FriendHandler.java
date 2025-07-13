@@ -19,8 +19,15 @@ class FriendHandler {
 	static Object showFriend(Context context) {
 		User user = context.getCurrentUser();
 		if (valid(user)) {
-			ArrayList<User> result = Storage.getMyFriend(user.number);
-			context.request.setAttribute("friends", result);
+			ArrayList<User> friends = Storage.getMyFriend(user.number);
+			context.request.setAttribute("friends", friends);
+			
+			ArrayList<User> requests = Storage.getMyFriendRequest(user.number);
+			context.request.setAttribute("requests", requests);
+			
+			ArrayList<User> toMe = Storage.getFriendRequestToMe(user.number);
+			context.request.setAttribute("toMe", toMe);
+			
 			return context.render("/WEB-INF/friend.jsp");
 		}
 		return context.redirect("/user-check-email");

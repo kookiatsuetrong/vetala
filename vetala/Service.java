@@ -30,7 +30,7 @@ class Service {
 	/*
 	*  Get User Status
 	*
-	*  GET /service-user-status
+	*  GET /service-user-status?user=123456
 	*/
 	static Object replyUserStatus(Context context) {
 		String result = "Access Denied";
@@ -51,6 +51,35 @@ class Service {
 		
 		return context.sendJson(o.toString());
 	}
+	
+	
+	/*
+	*  Get User Detail
+	*
+	*  GET /service-user-detail?number=123456
+	*/
+	/*
+	static Object replyUserDetail(Context context) {		
+		if (context.isLoggedIn()) {
+			String targetString = context.getParameter("number");
+			try {
+				int number = Integer.parseInt(targetString);
+				User user = Storage.getUserDetail(number);
+
+				JsonObject o = Json.createObjectBuilder()
+								.add("result", result)
+								.add("user",   user)
+								.build();
+
+				return context.sendJson(o.toString());
+
+			} catch (Exception e) { }
+			
+			return // Invalid User Number
+		}
+		return // Access Denied
+	}
+	*/
 	
 	/*
 	* Friend Request
