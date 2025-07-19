@@ -17,7 +17,7 @@
 				<br/>
 			</section>
 			
-			<section class="container trio">
+			<section class="container trio" id="friend-list">
 				<%
 					ArrayList<User> friends = (ArrayList<User>)
 							request.getAttribute("friends");
@@ -31,7 +31,9 @@
 					<span>
 						<a class="name"
 							href="/member-detail?number=<%= u.number %>">
-							<%= u.firstName %> <%= u.lastName %>
+							<span id="name-<%= u.number %>">
+								<%= u.firstName %> <%= u.lastName %>
+							</span>
 						</a>
 						<span class='status' id='status-<%= u.number %>'>
 							...
@@ -62,7 +64,9 @@
 					<span>
 						<a class="name"
 							href="/member-detail?number=<%= u.number %>">
-							<%= u.firstName %> <%= u.lastName %>
+							<span id="name-<%= u.number %>">
+								<%= u.firstName %> <%= u.lastName %>
+							</span>
 						</a>
 						<span class='status' id='status-<%= u.number %>'>
 							...
@@ -95,7 +99,9 @@
 					<span>
 						<a class="name"
 							href="/member-detail?number=<%= u.number %>">
-							<%= u.firstName %> <%= u.lastName %>
+							<span id="name-<%= u.number %>">
+								<%= u.firstName %> <%= u.lastName %>
+							</span>
 						</a>
 						<span class='status' id='status-<%= u.number %>'>
 							...
@@ -210,17 +216,36 @@
 				}
 				
 				async function acceptRequest(number) {
+					console.log("Accept Friend Request")
+					var nameElement = document
+									.getElementById("name-" + number)
+					var name = nameElement == null ? "" : nameElement.innerText
+
+					var template = document.getElementById("template")
+					var newly = template.innerText
+					newly = newly.replaceAll("###user-number###", number)
+					newly = newly.replaceAll("###user-name###",   name)
+
 					var url = "/service-accept-friend" +
 								"?number=" + number
 					var response = await fetch(url)
 					if (response.status == 200) {
-						console.log("Accept Friend Request")
 						var target  = "profile-" + number
 						var element = document.getElementById(target)
 						element.style.display = "none"
+						
+						var list = document.getElementById("friend-list")
+						list.innerHTML += newly
+						
+						var photoLocation = "/uploaded/profile-" + 
+												number + ".png"
+						var photo         = "profile-photo-" + number
+						var photoElement  = document.getElementById(photo)
+						photoElement.src = await loadPhoto(photoLocation)
 					}
 				}
 				
+				/*
 				displayFriends()
 				
 				async function displayFriends() {
@@ -237,8 +262,26 @@
 				function appendFriend(user) {
 					
 				}
-				
-				
+				*/
+			</script>
+			
+			<script type="text" id="template">
+				<section class="profile" id="profile-###user-number###">
+					<img class="profile-photo"
+						id="profile-photo-###user-number###"
+						src="/uploaded/empty-photo.png" />
+					<span>
+						<a class="name"
+							href="/member-detail?number=###user-number###">
+							<span id="name-###user-number###">
+								###user-name###
+							</span>
+						</a>
+						<span class='status' id='status-###user-number###'>
+							...
+						</span>
+					</span>
+				</section>
 			</script>
 
 			<style>
