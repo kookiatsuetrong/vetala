@@ -46,7 +46,7 @@
 			</section>
 			
 			<section class="container">
-				<h2>Friend Requests from You</h2>
+				<h2>Your Requests</h2>
 				<br/>
 			</section>
 			
@@ -81,7 +81,7 @@
 			</section>
 
 			<section class="container">
-				<h2>Friend Requests to You</h2>
+				<h2>Friend Requests</h2>
 				<br/>
 			</section>
 			
