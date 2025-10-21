@@ -31,6 +31,7 @@ staff
 user
 */
 
+/*
 create table friends
 (
 	source int not null,
@@ -44,6 +45,7 @@ create table friend_requests
 	target int not null,
 	since  timestamp default now()
 );
+*/
 
 /*
 insert into users(email, password, first_name, last_name, type)
@@ -100,13 +102,6 @@ create table messages
 insert into messages(topic,email,time) 
 	values('Topic 1', 'email@sample.com', utc_timestamp());
 
-create table friend_requests
-(
-	source        int not null,
-	target        int not null,
-	time          timestamp
-);
-
 create table friends
 (
 	source        int not null,
@@ -114,3 +109,9 @@ create table friends
 	time          timestamp
 );
 
+create table friend_requests
+(
+	source        int not null,
+	target        int not null,
+	time          timestamp
+);
