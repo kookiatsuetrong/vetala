@@ -106,9 +106,9 @@ body {
 	font-family: "publicsans";
 	color: #333;
 	background: #f8fffd;
-	/* background: #f8fdff; */
 	/* background: #fffdfd; */
-	background-image: url(background.png);
+	/* background: #f8fdff; */
+	background-image: url(background-blue.png);
 	background-size: 100% auto;
 	
 	min-height: 100dvh;
@@ -154,7 +154,7 @@ h3 { font-size: 1.50rem; font-weight: 400; margin: 0; }
 	--button-background-hover: rgba( 32, 176, 160, 1);
 	/* red */
 	/*
-	--button-background: rgba( 176, 32, 32, .8);
+	--button-background: rgba( 176, 32, 32, .85);
 	--button-background-hover: rgba( 176, 32, 32, 1);
 	*/
 	/* blue */
@@ -166,10 +166,17 @@ h3 { font-size: 1.50rem; font-weight: 400; margin: 0; }
 	/* green */
 	--brand-color: rgba(32, 180, 160, 1);
 	--brand-light: rgba(32, 180, 160, .05);
+	
 	/* red */
-	/* --brand-color: rgba(220, 32, 32, 1); */
+	/*
+	--brand-color: rgba(220, 32, 32, 1);
+	--brand-light: rgba(220, 32, 32, .05);
+	*/
 	/* blue */
-	/* --brand-color: rgba(32, 160, 220, 1); */
+	/*
+	--brand-color: rgba(32, 160, 220, 1);
+	--brand-light: rgba(32, 160, 220, .05);
+	*/
 	
 	--footer-background: rgba(0, 0, 0, .75);
 	
