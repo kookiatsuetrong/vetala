@@ -1,5 +1,5 @@
-<%@page pageEncoding="UTF8" import="server.Setup" %>
 <!DOCTYPE html>
+<%@page pageEncoding="UTF-8" import="server.Setup" %>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width,viewport-fit=cover" />

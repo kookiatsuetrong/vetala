@@ -1,4 +1,5 @@
-<%@page pageEncoding="UTF8" %><!DOCTYPE html>
+<!DOCTYPE html>
+<%@page pageEncoding="UTF-8" %>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width,viewport-fit=cover" />

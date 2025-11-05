@@ -1,7 +1,7 @@
-<%@page pageEncoding="UTF8" %>
+<!DOCTYPE html>
+<%@page pageEncoding="UTF-8" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="server.User"%>
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width,viewport-fit=cover" />
