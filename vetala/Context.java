@@ -46,7 +46,8 @@ public class Context {
 	
 	public String sendJson(String s) {
 		try {
-			response.setHeader("Content-Type", "application/json");
+			response.setHeader("Content-Type", 
+					"application/json; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.print(s);
 		} catch (Exception e) { }
