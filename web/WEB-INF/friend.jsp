@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width,viewport-fit=cover" />
 		<title>Friends</title>
 		<link rel="stylesheet" href="/normalize.css" />
 		<link rel="stylesheet" href="/main.css" />

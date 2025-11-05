@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF8" import="server.User"%><!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width,viewport-fit=cover" />
 		<title>Change Password</title>
 		<link rel="stylesheet" href="/normalize.css" />
 		<link rel="stylesheet" href="/main.css" />
