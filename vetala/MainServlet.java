@@ -117,7 +117,6 @@ public class MainServlet extends HttpServlet {
 		map.put( "GET /service-list-friend-request-to-me",
 												Service::listFriendRequestToMe);
 		
-		
 		map.put( "GET /contact",       ContactHandler::showPage);
 		map.put("POST /contact",       ContactHandler::saveDetail);
 		map.put( "GET /contact-final", ContactHandler::showFinal);
@@ -141,6 +140,12 @@ public class MainServlet extends HttpServlet {
 		String pattern = verb + " " + uri;
 		
 		System.out.println(pattern);
+		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		
 		// TODO: Support GET Request writh /x/y/z
 		// /whatever/parameter/sample/query
